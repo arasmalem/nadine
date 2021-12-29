@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2021 <a href="http://bakorwilpamekasan.jatimprov.go.id" target="_blank">Bakorwil Pamekasan</a></strong>
+    <strong>Copyright &copy; 2022 <a href="http://bakorwilpamekasan.jatimprov.go.id" target="_blank">Bakorwil Pamekasan</a></strong>
 </footer>
 
 <!-- jQuery 3 -->

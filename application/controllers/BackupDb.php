@@ -25,12 +25,12 @@ class BackupDb extends CI_Controller {
         $this->load->dbutil();
         $prefs = [
             'format' => 'sql',
-            'filename' => 'siasn_surat-' . date('Ymd-His') . '.sql'
+            'filename' => 'bkw4_surat-' . date('Ymd-His') . '.sql'
         ];
 
         $backup =& $this->dbutil->backup($prefs);
 
-        $dbname = 'siasn_surat-' . date('Ymd-His') . '.sql';
+        $dbname = 'bkw4_surat-' . date('Ymd-His') . '.sql';
         $save = FCPATH . 'assets/db/' . $dbname;
         $this->load->helper('file');
         write_file($save, $backup);

@@ -81,9 +81,6 @@
                                     <center>Perihal</center>
                                 </th>
                                 <th>
-                                    <center>Ringkasan</center>
-                                </th>
-                                <th>
                                     <center>Operator</center>
                                 </th>
                                 <th>
@@ -97,7 +94,7 @@
                                 <tr>
                                     <td align='center' colspan="12">
                                         <span class="text text-danger">
-                                            <h5>- Data tidak ditemukan -</h5>
+                                            <h5>- tidak ada data -</h5>
                                         </span>
                                     </td>
                                 </tr>
@@ -107,7 +104,7 @@
                                 <tr>
                                     <td align='center'><?= ++$start ?></td>
                                     <td align='center'><?= $row->nomor_agenda ?></td>
-                                    <td align='center'><?= $row->yth ?></td>
+                                    <td align='center'><?= $row->tujuan ?></td>
                                     <td align='center'><?= $row->nomor_surat_keluar ?></td>
                                     <td align='center'>
                                         <?php
@@ -115,15 +112,9 @@
                                             echo $tgl;
                                             ?>
                                     </td>
-                                    <td align="center">
-                                        <?php
-                                            $data = $this->Disposisi_model->getSifatById(@$row->sifat_id);
-                                            echo @$data->sifat;
-                                            ?>
-                                    </td>
+                                    <td align="center"><?= $row->sifat ?></td>
                                     <td align='center'><?= $row->klasifikasi ?></td>
                                     <td align='center'><?= $row->perihal ?></td>
-                                    <td align='center'><?= $row->ringkasan ?></td>
                                     <td><?= $row->operator ?></td>
                                     <td align="center"><?= $row->created_at ?></td>
                                 </tr>

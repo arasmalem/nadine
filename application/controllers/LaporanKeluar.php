@@ -6,17 +6,15 @@ class LaporanKeluar extends CI_Controller {
         parent::__construct();
         is_logged_in();
         $this->load->model('LaporanKeluar_model');
-        //$this->load->model('Users_model');
-        //$this->load->model('Log_model');
     }
 
     public function index() {
         /* PAGINATION */
         // config
         $total_rows = $this->LaporanKeluar_model->getTotalRows();
-        $config['base_url'] = base_url() . '/LaporanKeluar/index';
+        $config['base_url'] = base_url() . '/laporankeluar/index';
         $config['total_rows'] = $total_rows;
-        $config['per_page'] = 7;
+        $config['per_page'] = 10;
 
         // initialize
         $this->pagination->initialize($config);
@@ -65,7 +63,7 @@ class LaporanKeluar extends CI_Controller {
         /* PAGINATION */
         // config
         $total_rows = $this->LaporanKeluar_model->getTotalRowsBySearch($data['tgl_awal'], $data['tgl_akhir']);
-        $config['base_url'] = base_url() . '/LaporanKeluar/search';
+        $config['base_url'] = base_url() . '/laporankeluar/search';
         $config['total_rows'] = $total_rows;
         $config['per_page'] = 7;
 
@@ -198,12 +196,11 @@ class LaporanKeluar extends CI_Controller {
         foreach ($laporan as $row) :
             $excel->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $no);
             $excel->setActiveSheetIndex(0)->setCellValue('B' . $numrow, $row->nomor_agenda);
-            $excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $row->yth);
+            $excel->setActiveSheetIndex(0)->setCellValue('C' . $numrow, $row->tujuan);
             $excel->setActiveSheetIndex(0)->setCellValue('D' . $numrow, $row->nomor_surat_keluar);
             $excel->setActiveSheetIndex(0)->setCellValue('E' . $numrow, $row->tgl);
 
-            $data = $this->Disposisi_model->getSifatById($row->sifat_id);
-            $excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $data->sifat);
+            $excel->setActiveSheetIndex(0)->setCellValue('F' . $numrow, $row->sifat);
             $excel->setActiveSheetIndex(0)->setCellValue('G' . $numrow, $row->klasifikasi);
             $excel->setActiveSheetIndex(0)->setCellValue('H' . $numrow, $row->perihal);
             $excel->setActiveSheetIndex(0)->setCellValue('I' . $numrow, $row->ringkasan);
