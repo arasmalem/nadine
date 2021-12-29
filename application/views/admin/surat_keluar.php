@@ -193,7 +193,7 @@
                         <select class="form-control" name="bidang" required>
                             <option value="" selected disabled>- Pilih Bidang -</option>
                             <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -289,10 +289,10 @@
                             <select class="form-control" name="bidang">
                                 <?php $bid = explode('/', $row->nomor_surat_keluar); ?>
                                 <?php foreach ($bidang as $b) : ?>
-                                    <?php if ($bid[2] == $b->kode_bidang) { ?>
-                                        <option value="<?= $b->kode_bidang ?>" selected><?= $b->nama_bidang ?></option>
+                                    <?php if ($bid[2] == $b->kode) { ?>
+                                        <option value="<?= $b->kode ?>" selected><?= $b->name ?></option>
                                     <?php } else { ?>
-                                        <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                        <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                                     <?php } ?>
                                 <?php endforeach; ?>
                             </select>

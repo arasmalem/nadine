@@ -111,7 +111,7 @@
                                         </span></td>
                                 </tr>
                                 <?php } else {
-                                foreach ($srtKeluar as $row) :
+                                foreach ($nota_dinas as $row) :
                                     $tgl = mediumdate_indo($row->tgl_notdin);
                                 ?>
                                     <tr>
@@ -181,16 +181,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Bidang</label>
-                        <select class="form-control" name="bidang" required>
-                            <option value="" selected disabled>- Pilih Bidang -</option>
-                            <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                        <label>Sub Bidang</label>
+                        <select class="form-control" name="sub_bidang" required>
+                            <option value="" selected disabled>- Pilih Sub Bidang -</option>
+                            <?php foreach ($sub_bidang as $sb) : ?>
+                                <option value="<?= $sb->kode ?>"><?= $sb->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan">Tujuan</label>
+                        <label for="tujuan">Tujuan Nota Dinas</label>
                         <input type="text" class="form-control" id="tujuan" name="tujuan" style="text-transform: uppercase;" required>
                     </div>
                     <div class="form-group">
@@ -269,14 +269,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Bidang</label>
-                            <select class="form-control" name="bidang">
-                                <?php $bid = explode('/', $row->nomor_surat_keluar); ?>
-                                <?php foreach ($bidang as $b) : ?>
-                                    <?php if ($bid[2] == $b->kode_bidang) { ?>
-                                        <option value="<?= $b->kode_bidang ?>" selected><?= $b->nama_bidang ?></option>
+                            <label>Sub Bidang</label>
+                            <select class="form-control" name="sub_bidang">
+                                <?php $subid = explode('/', $row->nomor_notdin); ?>
+                                <?php foreach ($sub_bidang as $sb) : ?>
+                                    <?php if ($subid[2] == $sb->kode) { ?>
+                                        <option value="<?= $sb->kode ?>" selected><?= $sb->name ?></option>
                                     <?php } else { ?>
-                                        <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                        <option value="<?= $sb->kode ?>"><?= $sb->name ?></option>
                                     <?php } ?>
                                 <?php endforeach; ?>
                             </select>
@@ -286,12 +286,12 @@
                             <input type="text" class="form-control" id="tujuan" name="tujuan" style="text-transform: uppercase;" value="<?= $row->tujuan ?>" required>
                         </div>
                         <div class="form-group">
-                            <label>Tgl Surat</label>
+                            <label>Tgl Nota Dinas</label>
                             <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="tgl_notdin" value="<?= $row->tgl ?>" readonly>
+                                <input type="text" class="form-control pull-right" name="tgl_notdin" value="<?= $row->tgl_notdin ?>" readonly>
                             </div>
                         </div>
                         <div class="form-group">

@@ -3,7 +3,7 @@
 class Spt_model extends CI_Model {
 
     private $_table = 'surat_spt';
-    private $_table2 = 'bidang';
+    private $_table2 = 'skpd';
 
     public function getAll($limit, $start, $tgl_spt = null, $nomor_spt = null, $perihal = null) {
         if ($tgl_spt == null and $nomor_spt == null and $perihal == null) {
@@ -68,7 +68,9 @@ class Spt_model extends CI_Model {
     }
 
     public function getBidang() {
-        return $this->db->get($this->_table2)->result();
+        $this->db->from($this->_table2);
+        $this->db->where('pId', '214');
+        return $this->db->get()->result();
     }
 
     public function save($data) {

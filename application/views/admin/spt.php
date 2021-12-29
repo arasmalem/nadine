@@ -170,7 +170,7 @@
                         <select class="form-control" name="bidang" required>
                             <option value="" selected disabled>- Pilih Bidang -</option>
                             <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -234,6 +234,19 @@
                                 </div>
                                 <input type="text" class="form-control pull-right" name="tgl_spt" value="<?= $row->tgl_spt ?>" readonly>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Bidang</label>
+                            <select class="form-control" name="bidang">
+                                <?php $bid = explode('/', $row->nomor_spt); ?>
+                                <?php foreach ($bidang as $b) : ?>
+                                    <?php if ($bid[2] == $b->kode) { ?>
+                                        <option value="<?= $b->kode ?>" selected><?= $b->name ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?= $b->kode ?>"><?= $b->name ?></option>
+                                    <?php } ?>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="perihal">Perihal</label>

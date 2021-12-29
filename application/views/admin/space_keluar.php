@@ -197,7 +197,7 @@
                             <select class="form-control" name="bidang" required>
                                 <option value="" selected disabled>- Pilih Bidang -</option>
                                 <?php foreach ($bidang as $b) : ?>
-                                    <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                    <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

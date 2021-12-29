@@ -85,7 +85,8 @@
                 <h4 class="modal-title">Tambah Sifat Surat</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('SifatSurat/add'); ?>">
+                <form method="post" action="<?= site_url('sifatsurat/add'); ?>">
+                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label for="sifat">Sifat Surat</label>
                         <input type="text" class="form-control" id="sifat" name="sifat" required autocomplete="off">
@@ -112,7 +113,8 @@
                     <h4 class="modal-title">Edit Sifat Surat</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?= site_url('SifatSurat/edit/') . $row->id; ?>">
+                    <form method="post" action="<?= site_url('sifatsurat/edit/') . $row->id; ?>">
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="form-group">
                             <label for="sifat">Sifat Surat</label>
                             <input type="text" class="form-control" id="sifat" name="sifat" value="<?= $row->sifat ?>" required autocomplete="off">

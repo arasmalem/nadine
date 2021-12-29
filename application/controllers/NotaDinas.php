@@ -25,6 +25,7 @@ class NotaDinas extends CI_Controller {
         $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3));
         $klasifikasi = $this->NotaDinas_model->getKlasifikasi();
         $sifat = $this->NotaDinas_model->getSifat();
+        $sub_bidang = $this->NotaDinas_model->getSubBidang();
 
         $data = [
             'title' => 'Nota Dinas',
@@ -32,6 +33,7 @@ class NotaDinas extends CI_Controller {
             'nota_dinas' => $nota_dinas,
             'klasifikasi' => $klasifikasi,
             'sifat' => $sifat,
+            'sub_bidang' => $sub_bidang,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),
             'total_rows' => $config['total_rows']
@@ -83,13 +85,13 @@ class NotaDinas extends CI_Controller {
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
         $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3), $data['nomor_notdin'], $data['perihal'], $data['tgl_notdin']);
         $klasifikasi = $this->NotaDinas_model->getKlasifikasi();
-        $bidang = $this->NotaDinas_model->getBidang();
         $sifat = $this->NotaDinas_model->getSifat();
+        $sub_bidang = $this->NotaDinas_model->getSubBidang();
         $data = [
             'title' => 'Nota Dinas',
             'user' => $user,
             'nota_dinas' => $nota_dinas,
-            'bidang' => $bidang,
+            'sub_bidang' => $sub_bidang,
             'klasifikasi' => $klasifikasi,
             'sifat' => $sifat,
             'pagination' => $this->pagination->create_links(),
@@ -118,14 +120,14 @@ class NotaDinas extends CI_Controller {
 	    if (date('d') == '02' and date('m') == '01') {
             if (empty($no_agenda->nomor)) {
                 $no_agenda = 1;
-            } elseif (!empty($no_agenda->nomor)) {
+            } else {
                 $no_agenda = $no_agenda->nomor + 1;
             }      
         } else {
             $no_agenda = $no_agenda->nomor + 1;
         }
 
-        $nomor_notdin = $post['klasifikasi'] . '/' . $no_agenda . '/' . $post['bidang'] . '/' . date('Y');
+        $nomor_notdin = $post['klasifikasi'] . '/' . $no_agenda . '/' . $post['sub_bidang'] . '/' . date('Y');
         $data = [
             'nomor_agenda' => $no_agenda,
             'tujuan' => htmlspecialchars(strtoupper($post['tujuan']), true),
@@ -209,7 +211,7 @@ class NotaDinas extends CI_Controller {
     public function edit() {
         $surat_id = $this->uri->segment(3);
         $post = $this->input->post();
-        $nomor_notdin = $post['klasifikasi'] . '/' . $post['nomor_agenda'] . '/' . $post['bidang'] . '/' . date('Y');
+        $nomor_notdin = $post['klasifikasi'] . '/' . $post['nomor_agenda'] . '/' . $post['sub_bidang'] . '/' . date('Y');
         $data = [
             'tujuan' => htmlspecialchars(strtoupper($post['tujuan']), true),
             'nomor_notdin' => $nomor_notdin,

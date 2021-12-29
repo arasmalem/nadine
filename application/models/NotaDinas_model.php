@@ -3,6 +3,7 @@
 class NotaDinas_model extends CI_Model {
 
     private $_table = 'nota_dinas';
+    private $_table2 = 'skpd';
 
     public function getAll($limit, $start, $nomor_notdin = null, $perihal = null, $tgl = null) {
         if ($nomor_notdin == null and $perihal == null and $tgl == null) {
@@ -54,6 +55,13 @@ class NotaDinas_model extends CI_Model {
         // convert nomor_agenda dari string ke integer
         $sql = $this->db->query("SELECT MAX(CONVERT(nomor_agenda, signed)) as nomor FROM nota_dinas WHERE YEAR(tgl_notdin) = '$thn'");
         return $sql->row();
+    }
+
+    public function getSubBidang() {
+        $this->db->from($this->_table2);
+        $this->db->where('pId !=', '1');
+        $this->db->where('pId !=', '214');
+        return $this->db->get()->result();
     }
 
     public function save($data) {

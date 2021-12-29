@@ -3,7 +3,7 @@
 class SpaceSk_model extends CI_Model {
 
     private $_table = 'space_sk';
-    private $_table2 = 'bidang';
+    private $_table2 = 'skpd';
 
     public function getAll($limit, $start, $tgl_sk = null, $nomor_agenda = null) {
         if ($tgl_sk == null and $nomor_agenda == null) {
@@ -65,7 +65,9 @@ class SpaceSk_model extends CI_Model {
     }
 
     public function getBidang() {
-        return $this->db->get($this->_table2)->result();
+        $this->db->from($this->_table2);
+        $this->db->where('pId', '214');
+        return $this->db->get()->result();
     }
 
     public function save($data) {

@@ -26,7 +26,6 @@ class SuratKeluar extends CI_Controller {
         $klasifikasi = $this->SuratKeluar_model->getKlasifikasi();
         $sifat = $this->SuratKeluar_model->getSifat();
         $bidang = $this->SuratKeluar_model->getBidang();
-
         $data = [
             'title' => 'Surat Keluar',
             'user' => $user,

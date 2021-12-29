@@ -177,7 +177,7 @@
                         <select class="form-control" name="bidang" required>
                             <option value="" selected disabled>- Pilih Bidang -</option>
                             <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -261,10 +261,10 @@
                             <select class="form-control" name="bidang">
                                 <?php $bid = explode('/', $row->nomor_sk); ?>
                                 <?php foreach ($bidang as $b) : ?>
-                                    <?php if ($bid[2] == $b->kode_bidang) { ?>
-                                        <option value="<?= $b->kode_bidang ?>" selected><?= $b->nama_bidang ?></option>
+                                    <?php if ($bid[2] == $b->kode) { ?>
+                                        <option value="<?= $b->kode ?>" selected><?= $b->name ?></option>
                                     <?php } else { ?>
-                                        <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                        <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                                     <?php } ?>
                                 <?php endforeach; ?>
                             </select>
@@ -309,7 +309,7 @@ foreach ($sk as $row) :
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= site_url('SK/delete/') . $sk_id ?>" class="btn btn-success">Hapus</a>
+                    <a href="<?= site_url('sk/delete/') . $sk_id ?>" class="btn btn-success">Hapus</a>
                 </div>
             </div>
         </div>

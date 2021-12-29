@@ -3,7 +3,7 @@
 class Sk_model extends CI_Model {
 
     private $_table = 'surat_keputusan';
-    private $_table2 = 'bidang';
+    private $_table2 = 'skpd';
 
     public function getAll($limit, $start, $nomor_sk = null, $perihal = null, $tgl_sk = null) {
         if ($nomor_sk == null and $perihal == null and $tgl_sk == null) {
@@ -38,7 +38,7 @@ class Sk_model extends CI_Model {
     }
 
     public function getById($id) {
-        return $this->db->get_where($this->_table, ['sk_id' => $id])->row();
+        return $this->db->get_where($this->_table, ['id' => $id])->row();
     }
 
     public function getByNomor($nomor) {
@@ -72,7 +72,9 @@ class Sk_model extends CI_Model {
     }
 
     public function getBidang() {
-        return $this->db->get($this->_table2)->result();
+        $this->db->from($this->_table2);
+        $this->db->where('pId', '214');
+        return $this->db->get()->result();
     }
 
     public function save($data) {

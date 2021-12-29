@@ -187,7 +187,7 @@
                             <select class="form-control" name="bidang" required>
                                 <option value="" selected disabled>- Pilih Bidang -</option>
                                 <?php foreach ($bidang as $b) : ?>
-                                    <option value="<?= $b->kode_bidang ?>"><?= $b->nama_bidang ?></option>
+                                    <option value="<?= $b->kode ?>"><?= $b->name ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -224,7 +224,7 @@
 <!-- Modal Hapus SPT -->
 <?php
 foreach ($spacespt as $row) : ?>
-    <div class="modal fade" id="delSpaceSPT<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delSpaceSPT<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -240,8 +240,10 @@ class SPT extends CI_Controller {
     public function edit() {
         $spt_id = $this->uri->segment(3);
         $post = $this->input->post();
+        $nomor_spt = '094/' .  $post['nomor_agenda'] . '/' . $post['bidang'] . '/' . date('Y');
         $data = [
             'nomor_agenda' => $post['nomor_agenda'],
+            'nomor_spt' => $nomor_spt,
             'tgl_spt' => $post['tgl_spt'],
             'perihal' => htmlspecialchars($post['perihal'], true),
             'file_surat' => $this->_uploadFile(),

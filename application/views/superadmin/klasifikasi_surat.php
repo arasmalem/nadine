@@ -131,6 +131,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="<?= site_url('KlasifikasiSurat/add'); ?>">
+                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label for="kode">Kode Surat</label>
                         <input type="text" class="form-control" id="kode" name="kode" required autocomplete="off">
@@ -162,6 +163,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" action="<?= site_url('KlasifikasiSurat/edit/') . $row->id; ?>">
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="form-group">
                             <label for="kode">Kode Surat</label>
                             <input type="text" class="form-control" id="kode" name="kode" value="<?= $row->kode_surat ?>" required autocomplete="off">
