@@ -156,7 +156,10 @@
 <div class="modal fade" id="newSPT" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title">Tambah Surat Perintah Tugas</h4>
             </div>
             <div class="modal-body">
@@ -205,7 +208,10 @@
     <div class="modal fade" id="editSPT<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h4 class="modal-title">Edit Surat Perintah Tugas</h4>
                 </div>
                 <div class="modal-body">
@@ -257,6 +263,9 @@ foreach ($spt as $row) : ?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h3 class="modal-title"><i class="fa fa-exclamation-circle"></i> Konfirmasi</h3>
                 </div>
                 <div class="modal-body">
@@ -277,8 +286,11 @@ foreach ($spt as $row) : ?>
     <div class="modal fade" id="detailSPT<?= $row->id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" style="color:blue;">Informasi Detail Surat</h4>
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Informasi Detail Surat</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">

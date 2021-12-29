@@ -219,7 +219,7 @@ class SpaceSpt extends CI_Controller {
                         $this->SpaceSpt_model->save($data);
                     }
                     // insert into log_activity table
-                    activity_log(@$this->uri->segment(1), 'insert', 'menambahkan space SPT');
+                    activity_log($this->uri->segment(1), 'insert', 'menambahkan space SPT');
 
                     $this->session->set_flashdata('success', 'Data berhasil ditambahkan!');
                     redirect($this->_cname);

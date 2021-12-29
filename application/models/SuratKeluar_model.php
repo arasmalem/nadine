@@ -75,7 +75,7 @@ class SuratKeluar_model extends CI_Model {
         return $this->db->get('sifat_surat')->result();
     }
 
-   public function getNomorAgendaSpace($thn) {
+    public function getNomorAgendaSpace($thn) {
         // convert nomor_agenda dari string ke integer
         $sql = $this->db->query("SELECT MAX(CONVERT(nomor_agenda, signed)) as nomor FROM space_keluar WHERE YEAR(tgl) = '$thn'");
         return $sql->row();

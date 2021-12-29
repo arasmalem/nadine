@@ -120,10 +120,13 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal Tambah Klasifikasi Surat -->
-<div class="modal fade" id="newKlasifikasi" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="newKlasifikasi" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title">Tambah Klasifikasi Surat</h4>
             </div>
             <div class="modal-body">
@@ -148,10 +151,13 @@
 
 <!-- Modal Edit Klasifikasi -->
 <?php foreach ($klasifikasi as $row) : ?>
-    <div class="modal fade" id="editKlasifikasi<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="editKlasifikasi<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h4 class="modal-title">Edit Klasifikasi Surat</h4>
                 </div>
                 <div class="modal-body">
@@ -179,10 +185,13 @@
 <?php
 foreach ($klasifikasi as $row) :
 ?>
-    <div class="modal fade" id="delKlasifikasi<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delKlasifikasi<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h3 class="modal-title"><i class="fa fa-exclamation-circle"></i> Konfirmasi</h3>
                 </div>
                 <div class="modal-body">

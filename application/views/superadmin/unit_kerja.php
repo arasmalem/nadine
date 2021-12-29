@@ -23,7 +23,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header">
-                <a class="btn btn-primary" href="<?= site_url('UnitKerja/addunitkerja') ?>"><i class="fa fa-plus"></i> Tambah</a>
+                <a class="btn btn-success" href="<?= site_url('unitkerja/addunitkerja') ?>"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

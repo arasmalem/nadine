@@ -25,48 +25,7 @@ class SuratKeluar extends CI_Controller {
         $srtKeluar = $this->SuratKeluar_model->getAll($config['per_page'], $this->uri->segment(3));
         $klasifikasi = $this->SuratKeluar_model->getKlasifikasi();
         $sifat = $this->SuratKeluar_model->getSifat();
-        $no_agenda_space = $this->SuratKeluar_model->getNomorAgendaSpace(date('Y'));
-        $no_agenda = $this->SuratKeluar_model->getNomorAgenda(date('Y'));
-        $tgl_sekarang = $this->SuratKeluar_model->getByTglToday();
-        $tgl_max = $this->SuratKeluar_model->getTglMax();
         $bidang = $this->SuratKeluar_model->getBidang();
-
-        // cek nomor agenda yang terakhir
-        if (date('d') == '02' and date('m') == '01') {
-            if (empty($no_agenda_space->nomor) and empty($no_agenda->nomor)) {
-                $no_agenda = 1;
-            } elseif (empty($no_agenda_space->nomor) and !empty($no_agenda->nomor)) {
-                $no_agenda = $no_agenda->nomor + 1;
-            } elseif (!empty($no_agenda_space->nomor) and !empty($no_agenda->nomor)) {
-                // cek apakah nomor agenda terakhir ada titik atau tidak
-                $exp = explode('.', $no_agenda_space->nomor);
-                if (empty($exp[1])) { // jika tidak ada titik
-                    $no_agenda = $no_agenda_space->nomor + 1;
-                } else {
-                    $no_agenda = $exp[0] + 1;
-                }                
-            }
-        } else {
-            // cek apakah nomor agenda terakhir ada titik atau tidak
-            if ($tgl_max->tgl == date('Y-m-d')) {
-                $no_agenda = $no_agenda->nomor + 1;
-            } else {
-		        if (!empty($tgl_sekarang->tgl)) {
-                    $no_agenda = $no_agenda->nomor + 1;
-                } else {
-		            if($no_agenda->nomor > $no_agenda_space->nomor) {
-                        $no_agenda = $no_agenda->nomor + 1;
-                    } else{
-                        $exp = explode('.', $no_agenda_space->nomor);
-                        if (empty($exp[1])) { // jika tidak ada titik
-                            $no_agenda = $no_agenda_space->nomor + 1;
-                        } else {
-                            $no_agenda = $exp[0] + 1;
-                        }
-		            }		
-                }
-            }
-        }
 
         $data = [
             'title' => 'Surat Keluar',
@@ -75,7 +34,6 @@ class SuratKeluar extends CI_Controller {
             'klasifikasi' => $klasifikasi,
             'sifat' => $sifat,
             'bidang' => $bidang,
-            'no_agenda' => $no_agenda,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),
             'total_rows' => $config['total_rows']

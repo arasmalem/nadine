@@ -131,7 +131,10 @@
 <div class="modal fade" id="newSpaceSK" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title">Tambah Space Nomor SK</h4>
             </div>
             <div class="modal-body">
@@ -166,7 +169,10 @@
     <div class="modal fade" id="useSpaceSK<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h4 class="modal-title">Tambah Surat Keputusan</h4>
                 </div>
                 <div class="modal-body">
@@ -227,10 +233,13 @@
 <!-- Modal Hapus SK -->
 <?php
 foreach ($spacesk as $row) : ?>
-    <div class="modal fade" id="delSpaceSK<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delSpaceSK<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h3 class="modal-title"><i class="fa fa-exclamation-circle"></i> Konfirmasi</h3>
                 </div>
                 <div class="modal-body">

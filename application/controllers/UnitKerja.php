@@ -2,14 +2,12 @@
 
 class UnitKerja extends CI_Controller {
 
-    private $_cname = 'UnitKerja';
+    private $_cname = 'unitkerja';
 
     public function __construct() {
         parent::__construct();
         is_logged_in();
         $this->load->model('UnitKerja_model');
-        //$this->load->model('Users_model');
-        //$this->load->model('Log_model');
     }
 
     public function index() {
@@ -31,7 +29,7 @@ class UnitKerja extends CI_Controller {
 		$unit = $this->UnitKerja_model->getUnit();
 		$arr = [];
         foreach ($unit as $value) :
-            $url = site_url('UnitKerja/editunitkerja/') . $value->id;
+            $url = site_url('unitkerja/editunitkerja/') . $value->id;
             $array = [
                 'id' => $value->id,
                 'pId' => $value->pId,
@@ -92,7 +90,7 @@ class UnitKerja extends CI_Controller {
         $this->UnitKerja_model->save($data);
 
         // insert into log_activity table
-        activity_log(@$this->uri->segment(1), 'insert', 'menambahkan unit kerja');
+        activity_log($this->uri->segment(1), 'insert', 'menambahkan unit kerja');
 
         $this->session->set_flashdata('success', 'Unit kerja berhasil ditambah!');
         redirect($this->_cname);
@@ -106,7 +104,7 @@ class UnitKerja extends CI_Controller {
         $this->UnitKerja_model->update($data, $id);
 
         // insert into log_activity table
-        activity_log(@$this->uri->segment(1), 'update', 'mengubah unit kerja');
+        activity_log($this->uri->segment(1), 'update', 'mengubah unit kerja');
 
         $this->session->set_flashdata('success', 'Unit kerja berhasil diubah!');
         redirect($this->_cname);
@@ -116,7 +114,7 @@ class UnitKerja extends CI_Controller {
         $id = $this->uri->segment(3);
 
         /* insert into log_activity table */
-        activity_log(@$this->uri->segment(1), 'delete', 'menghapus unit kerja');
+        activity_log($this->uri->segment(1), 'delete', 'menghapus unit kerja');
 
         /* hapus data berdasar id */
         $this->UnitKerja_model->delete($id);

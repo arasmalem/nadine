@@ -75,10 +75,13 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal Tambah Sifat Surat -->
-<div class="modal fade" id="newSifat" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="newSifat" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title">Tambah Sifat Surat</h4>
             </div>
             <div class="modal-body">
@@ -99,10 +102,13 @@
 
 <!-- Modal Edit Sifat -->
 <?php foreach ($sifat as $row) : ?>
-    <div class="modal fade" id="editSifat<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="editSifat<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h4 class="modal-title">Edit Sifat Surat</h4>
                 </div>
                 <div class="modal-body">
@@ -126,10 +132,13 @@
 <?php
 foreach ($sifat as $row) :
 ?>
-    <div class="modal fade" id="delSifat<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delSifat<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h3 class="modal-title"><i class="fa fa-exclamation-circle"></i> Konfirmasi</h3>
                 </div>
                 <div class="modal-body">

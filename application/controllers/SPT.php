@@ -26,53 +26,11 @@ class SPT extends CI_Controller {
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
         $spt = $this->Spt_model->getAll($config['per_page'], $this->uri->segment(3));
         $bidang = $this->Spt_model->getBidang();
-        $no_agenda_space = $this->Spt_model->getNomorAgendaSpace(date('Y'));
-        $no_agenda = $this->Spt_model->getNomorAgenda(date('Y'));
-        $tgl_sekarang = $this->Spt_model->getByTglToday();
-        $tgl_max = $this->Spt_model->getTglMax();
-
-        // cek nomor agenda yang terakhir
-        if (date('d') == '02' and date('m') == '01') {
-            if (empty($no_agenda_space->nomor) and empty($no_agenda->nomor)) {
-                $no_agenda = 1;
-            } elseif (empty($no_agenda_space->nomor) and !empty($no_agenda->nomor)) {
-                $no_agenda = $no_agenda->nomor + 1;
-            } elseif (!empty($no_agenda_space->nomor) and !empty($no_agenda->nomor)) {
-                // cek apakah nomor agenda terakhir ada titik atau tidak
-                $exp = explode('.', $no_agenda_space->nomor);
-                if (empty($exp[1])) { // jika tidak ada titik
-                    $no_agenda = $no_agenda_space->nomor + 1;
-                } else {
-                    $no_agenda = $exp[0] + 1;
-                }                
-            }
-        } else {
-            // cek apakah nomor agenda terakhir ada titik atau tidak
-            if ($tgl_max->tgl == date('Y-m-d')) {
-                $no_agenda = $no_agenda->nomor + 1;
-            } else {
-                if (!empty($tgl_sekarang->tgl)) {
-                    $no_agenda = $no_agenda->nomor + 1;
-                } else {
-		            if($no_agenda->nomor > $no_agenda_space->nomor) {
-                        $no_agenda = $no_agenda->nomor + 1;
-                    } else{
-                        $exp = explode('.', $no_agenda_space->nomor);
-                        if (empty($exp[1])) { // jika tidak ada titik
-                            $no_agenda = $no_agenda_space->nomor + 1;
-                        } else {
-                            $no_agenda = $exp[0] + 1;
-                        }
-		            }
-                }
-            }
-        }
 
         $data = [
             'title' => 'Surat Perintah Tugas',
             'user' => $user,
             'spt' => $spt,
-            'no_agenda' => $no_agenda,
             'bidang' => $bidang,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),

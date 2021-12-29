@@ -58,10 +58,9 @@
             var pId = $('#bid').val();
             $.ajax({
                 type: "POST",
-                url: "<?= site_url("Pegawai/getListSubid"); ?>",
+                url: "<?= site_url("pegawai/getListSubid"); ?>",
                 data: "pId=" + pId,
                 success: function(data) {
-                    // console.log(data)
                     $('#subid').html(data);
                 }
             });
@@ -72,7 +71,7 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            url: "<?= site_url('UnitKerja/unit') ?>",
+            url: "<?= site_url('unitkerja/unit') ?>",
             type: "GET",
             dataType: "JSON",
             success: function(data) {

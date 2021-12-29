@@ -3,11 +3,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Surat Keluar
+            Nota Dinas
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= site_url('home') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Surat Keluar</li>
+            <li class="active">Nota Dinas</li>
         </ol>
         <!-- Flashdata -->
         <?php if ($this->session->flashdata('success')) { ?>
@@ -23,7 +23,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header">
-                <button class="btn btn-success" data-toggle="modal" data-target="#newSuratKeluar"><i class="fa fa-plus"></i> Tambah</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#newNotaDinas"><i class="fa fa-plus"></i> Tambah</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -34,30 +34,26 @@
                                 <button data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" class="btn btn-sm btn-danger pull-right" aria-expanded="true">
                                     Filter Pencarian
                                 </button>
-                                <a href="<?= site_url('suratkeluar/reset') ?>" class="btn btn-sm bg-navy pull-right" style="margin-right:5px;">
+                                <a href="<?= site_url('notadinas/reset') ?>" class="btn btn-sm bg-navy pull-right" style="margin-right:5px;">
                                     Reset Pencarian
                                 </a>
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse" aria-expanded="true">
                                 <div class="box-body">
-                                    <form method="post" action="<?= site_url('suratkeluar/search') ?>">
+                                    <form method="post" action="<?= site_url('notadinas/search') ?>">
                                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                         <div class="form-group">
-                                            <label>Tanggal Surat</label>
+                                            <label>Tanggal Nota Dinas</label>
                                             <div class="input-group date">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" class="form-control pull-right datepicker" name="tgl">
+                                                <input type="text" class="form-control pull-right datepicker" name="tgl_notdin">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="tujuan">Tujuan Surat</label>
-                                            <input type="text" class="form-control" name="tujuan" id="tujuan">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nomor_surat">Nomor Surat</label>
-                                            <input type="text" class="form-control" name="nomor_surat_keluar" id="nomor_surat">
+                                            <label for="nomor_notdin">Nomor Nota Dinas</label>
+                                            <input type="text" class="form-control" name="nomor_notdin" id="nomor_notdin">
                                         </div>
                                         <div class=" form-group">
                                             <label for="perihal">Perihal</label>
@@ -84,26 +80,23 @@
                                     <center>File Surat</center>
                                 </th>
                                 <th>
-                                    <center>Tujuan Surat</center>
+                                    <center>Tujuan</center>
                                 </th>
                                 <th>
                                     <center>Nomor Agenda</center>
                                 </th>
                                 <th>
-                                    <center>Nomor Surat</center>
+                                    <center>Nomor Nota Dinas</center>
                                 </th>
                                 <th>
-                                    <center>Tgl Surat</center>
+                                    <center>Tgl Nota Dinas</center>
                                 </th>
                                 <th>
-                                    <center>Sifat Surat</center>
+                                    <center>Sifat</center>
                                 </th>
                                 <th>
                                     <center>Perihal</center>
                                 </th>
-                                <!-- <th>
-                                    <center>Klasifikasi Surat</center>
-                                </th> -->
                                 <th>
                                     <center>Actions</center>
                                 </th>
@@ -119,7 +112,7 @@
                                 </tr>
                                 <?php } else {
                                 foreach ($srtKeluar as $row) :
-                                    $tgl = mediumdate_indo($row->tgl);
+                                    $tgl = mediumdate_indo($row->tgl_notdin);
                                 ?>
                                     <tr>
                                         <td align='center'><?= ++$start ?></td>
@@ -129,22 +122,21 @@
                                         } else {
                                         ?>
                                             <td>
-                                                <a href="<?= base_url('files_surat_keluar/') . $row->file_surat ?>" target="_blank">
+                                                <a href="<?= base_url('files_nota_dinas/') . $row->file_surat ?>" target="_blank">
                                                     <center><img src="<?= site_url('assets/') ?>images/pdf.png" width='15' height='15'></center>
                                                 </a>
                                             </td>
                                         <?php } ?>
                                         <td><?= $row->tujuan ?></td>
                                         <td align='center'><?= $row->nomor_agenda ?></td>
-                                        <td><?= $row->nomor_surat_keluar ?></td>
+                                        <td><?= $row->nomor_notdin ?></td>
                                         <td align='center'><?= $tgl ?></td>
                                         <td align='center'><?= $row->sifat ?></td>
                                         <td><?= $row->perihal ?></td>
-                                        <!-- <td align='center'><?= $row->klasifikasi ?></td> -->
                                         <td align='center'>
-                                            <a href="" class="text text-primary fa fa-edit" data-toggle="modal" data-target="#editSuratKeluar<?= $row->id ?>" title="Edit"></a>&nbsp;
-                                            <a href="" class="text text-danger fa fa-trash" data-toggle="modal" data-target="#delSuratKeluar<?= $row->id; ?>" title="Delete"></a>&nbsp;
-                                            <a href="" class="text text-success fa fa-search" data-toggle="modal" data-target="#detailSuratKeluar<?= $row->id; ?>" title="Detail"></a>
+                                            <a href="" class="text text-primary fa fa-edit" data-toggle="modal" data-target="#editNotaDinas<?= $row->id ?>" title="Edit"></a>&nbsp;
+                                            <a href="" class="text text-danger fa fa-trash" data-toggle="modal" data-target="#delNotaDinas<?= $row->id; ?>" title="Delete"></a>&nbsp;
+                                            <a href="" class="text text-success fa fa-search" data-toggle="modal" data-target="#detailNotaDinas<?= $row->id; ?>" title="Detail"></a>
                                         </td>
                                     </tr>
                             <?php
@@ -166,18 +158,18 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!-- Modal Tambah Surat Keluar -->
-<div class="modal fade" id="newSuratKeluar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Modal Tambah Nota Dinas -->
+<div class="modal fade" id="newNotaDinas" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-olive">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title">Tambah Surat Keluar</h4>
+                <h4 class="modal-title">Tambah Nota Dinas</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('suratkeluar/add'); ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= site_url('notadinas/add'); ?>" enctype="multipart/form-data">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label>Klasifikasi Surat</label>
@@ -198,16 +190,16 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan">Tujuan Surat</label>
+                        <label for="tujuan">Tujuan</label>
                         <input type="text" class="form-control" id="tujuan" name="tujuan" style="text-transform: uppercase;" required>
                     </div>
                     <div class="form-group">
-                        <label>Tgl Surat</label>
+                        <label>Tgl Nota Dinas</label>
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" name="tgl_surat" value="<?= date('Y-m-d') ?>" readonly />
+                            <input type="text" class="form-control pull-right" name="tgl_notdin" value="<?= date('Y-m-d') ?>" readonly />
                         </div>
                     </div>
                     <div class="form-group">
@@ -220,16 +212,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="lampiran">Lampiran</label>
-                        <input type="text" class="form-control" id="lampiran" name="lampiran">
-                    </div>
-                    <div class="form-group">
                         <label for="perihal">Perihal</label>
                         <textarea class="form-control" rows="3" id="perihal" name="perihal" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="ringkasan">Ringkasan</label>
-                        <textarea class="form-control" rows="3" id="ringkasan" name="ringkasan" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="file">File Surat</label>
@@ -247,30 +231,30 @@
     </div>
 </div>
 
-<!-- Modal Edit Surat Keluar -->
-<?php foreach ($srtKeluar as $row) :
+<!-- Modal Edit Nota Dinas -->
+<?php foreach ($nota_dinas as $row) :
     $surat_id = $row->id;
 ?>
-    <div class="modal fade" id="editSuratKeluar<?= $surat_id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="editNotaDinas<?= $surat_id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-olive">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title">Edit Surat Keluar</h4>
+                    <h4 class="modal-title">Edit Nota Dinas</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?= site_url('suratkeluar/edit/') . $surat_id; ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= site_url('notadinas/edit/') . $surat_id; ?>" enctype="multipart/form-data">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <input type="hidden" name="old_file" value="<?= $row->file_surat ?>">
                         <div class="form-group">
-                            <label for="nomor_agenda">Nomor Agenda Keluar</label>
+                            <label for="nomor_agenda">Nomor Agenda</label>
                             <input type="text" class="form-control" id="nomor_agenda" name="nomor_agenda" value="<?= $row->nomor_agenda ?>" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="nomor_surat">Nomor Surat</label>
-                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="<?= $row->nomor_surat_keluar ?>" readonly>
+                            <label for="nomor_notdin">Nomor Nota Dinas</label>
+                            <input type="text" class="form-control" id="nomor_notdin" name="nomor_notdin" value="<?= $row->nomor_notdin ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label>Klasifikasi Surat</label>
@@ -307,7 +291,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="tgl_surat" value="<?= $row->tgl ?>" readonly>
+                                <input type="text" class="form-control pull-right" name="tgl_notdin" value="<?= $row->tgl ?>" readonly>
                             </div>
                         </div>
                         <div class="form-group">
@@ -323,16 +307,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="lampiran">Lampiran</label>
-                            <input type="text" class="form-control" id="lampiran" name="lampiran" value="<?= $row->lampiran ?>">
-                        </div>
-                        <div class="form-group">
                             <label for="perihal">Perihal</label>
                             <textarea class="form-control" rows="3" id="perihal" name="perihal" required><?= $row->perihal ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="ringkasan">Ringkasan</label>
-                            <textarea class="form-control" rows="3" id="ringkasan" name="ringkasan" required><?= $row->ringkasan ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="file">File Surat</label>
@@ -351,12 +327,12 @@
     </div>
 <?php endforeach; ?>
 
-<!-- Modal Hapus Surat Keluar -->
+<!-- Modal Hapus Nota Dinas -->
 <?php
-foreach ($srtKeluar as $row) :
+foreach ($nota_dinas as $row) :
     $surat_id = $row->id;
 ?>
-    <div class="modal fade" id="delSuratKeluar<?= $surat_id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delNotaDinas<?= $surat_id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -370,19 +346,19 @@ foreach ($srtKeluar as $row) :
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                    <a href="<?= site_url('suratkeluar/delete/') . $surat_id ?>" class="btn btn-success">Hapus</a>
+                    <a href="<?= site_url('notadinas/delete/') . $surat_id ?>" class="btn btn-success">Hapus</a>
                 </div>
             </div>
         </div>
     </div>
 <?php endforeach; ?>
 
-<!-- Modal View Detail Surat Keluar -->
+<!-- Modal View Detail Nota Dinas -->
 <?php
-foreach ($srtKeluar as $row) :
+foreach ($nota_dinas as $row) :
     $surat_id = $row->id;
 ?>
-    <div class="modal fade" id="detailSuratKeluar<?= $surat_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailNotaDinas<?= $surat_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-olive">
@@ -406,15 +382,15 @@ foreach ($srtKeluar as $row) :
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 text text-danger">Nomor Surat</label>
+                            <label class="col-sm-3 text text-danger">Nomor Nota Dinas</label>
                             <div class="col-sm-9">
-                                <label class="col-sm-12"><?= $row->nomor_surat_keluar ?></label>
+                                <label class="col-sm-12"><?= $row->nomor_notdin ?></label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 text text-danger">Tgl Surat</label>
+                            <label class="col-sm-3 text text-danger">Tgl Nota Dinas</label>
                             <div class="col-sm-9">
-                                <label class="col-sm-12"><?= mediumdate_indo($row->tgl) ?></label>
+                                <label class="col-sm-12"><?= mediumdate_indo($row->tgl_notdin) ?></label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -424,21 +400,9 @@ foreach ($srtKeluar as $row) :
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 text text-danger">Lampiran</label>
-                            <div class="col-sm-9">
-                                <label class="col-sm-12"><?= $row->lampiran ?></label>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-3 text text-danger">Perihal</label>
                             <div class="col-sm-9">
                                 <label class="col-sm-12"><?= $row->perihal ?></label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 text text-danger">Ringkasan</label>
-                            <div class="col-sm-9">
-                                <label class="col-sm-12"><?= $row->ringkasan ?></label>
                             </div>
                         </div>
                         <div class="form-group">
