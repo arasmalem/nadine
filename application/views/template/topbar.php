@@ -33,7 +33,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="<?= site_url('Profile') ?>" class="btn btn-default btn-flat">Profile</a>
+                                <a href="<?= site_url('profile') ?>" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#logoutModal">Logout</a>

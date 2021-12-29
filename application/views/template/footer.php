@@ -58,10 +58,22 @@
             var pId = $('#bid').val();
             $.ajax({
                 type: "POST",
-                url: "<?= site_url("pegawai/getListSubid"); ?>",
+                url: "<?= site_url("users/getListSubid"); ?>",
                 data: "pId=" + pId,
                 success: function(data) {
                     $('#subid').html(data);
+                }
+            });
+        });
+
+        $('#bidang').change(function() {
+            var pId = $('#bidang').val();
+            $.ajax({
+                type: "POST",
+                url: "<?= site_url("users/getListSubid"); ?>",
+                data: "pId=" + pId,
+                success: function(data) {
+                    $('#sub_bidang').html(data);
                 }
             });
         });

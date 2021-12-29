@@ -24,7 +24,7 @@
             <div class="col-md-5">
 
                 <!-- Profile Image -->
-                <div class="box box-primary">
+                <div class="box box-success">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" src="<?= base_url('assets/images/') . $user->foto ?>" alt="User profile picture">
 
@@ -45,14 +45,14 @@
                             <li class="list-group-item">
                                 <b>Status</b>
                                 <?php if ($user->status == 'Active') { ?>
-                                    <span class="pull-right badge bg-aqua"><?= $user->status ?></span>
+                                    <span class="pull-right badge bg-navy"><?= $user->status ?></span>
                                 <?php } else { ?>
                                     <span class="pull-right badge bg-red"><?= $user->status ?></span>
                                 <?php } ?>
                             </li>
                         </ul>
 
-                        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#editProfil">Edit Profil</button>
+                        <button class="btn btn-success btn-block" data-toggle="modal" data-target="#editProfil">Edit Profil</button>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -68,14 +68,18 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal Edit Profil -->
-<div class="modal fade" id="editProfil" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="editProfil" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title"><i class="fa fa-user"></i> &nbsp;&nbsp;Edit Profil</h4>
             </div>
             <div class="modal-body">
                 <form method="post" action="<?= site_url('profile/edit') ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <input type="hidden" name="old_image" value="<?= $user->foto ?>">
                     <input type="hidden" name="old_password" value="<?= $user->password ?>">
                     <div class="form-group">

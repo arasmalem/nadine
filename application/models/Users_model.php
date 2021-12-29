@@ -4,31 +4,31 @@ class Users_model extends CI_Model {
 
     private $_table = 'user';
 
-    public function getAll($limit, $start, $keyword = null) {
-        if ($keyword != null) {
+    public function getAll($limit, $start, $username = null, $nama = null) {
+        if ($username == null and $nama == null) {
             $this->db->select('id, username, nama, role, status, bidang, sub_bidang, foto');
             $this->db->from($this->_table);
-            $this->db->like('username', $keyword);
-            $this->db->or_like('nama', $keyword);
-            $this->db->or_like('role', $keyword);
-            $this->db->or_like('status', $keyword);
+            $this->db->order_by('id', 'desc');
             $this->db->limit($limit, $start);
         } else {
             $this->db->select('id, username, nama, role, status, bidang, sub_bidang, foto');
             $this->db->from($this->_table);
+            if ($username != null) $this->db->like('username', $username, 'both');
+            if ($nama != null) $this->db->like('nama', $nama, 'both');
             $this->db->order_by('id', 'desc');
             $this->db->limit($limit, $start);
         }
         return $this->db->get()->result();
     }
 
-    public function getTotalRows($keyword) {
-        $this->db->like('username', $keyword)
-                 ->or_like('nama', $keyword)
-                 ->or_like('role', $keyword)
-                 ->or_like('status', $keyword)
-                 ->from($this->_table);
-        return $this->db->count_all_results();
+    public function getTotalRows() {
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getTotalRowsBySearch($username = null, $nama = null) {
+        if ($username != null) $this->db->like('username', $username, 'both');
+        if ($nama != null) $this->db->like('nama', $nama, 'both');
+        return $this->db->count_all_results($this->_table);
     }
 
     public function getByUsername($username) {
@@ -49,7 +49,7 @@ class Users_model extends CI_Model {
     }
 
     public function getAllBidang() {
-        return $this->db->get_where('skpd', ['pId' => 123])->result();
+        return $this->db->get_where('skpd', ['pId' => 214])->result();
     }
 
     public function getAllSubBidang($id_bidang) {

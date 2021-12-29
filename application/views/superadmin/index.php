@@ -7,7 +7,7 @@
             <small>version 1.0</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="<?= site_url('Home') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?= site_url('home') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         </ol>
     </section>
 
@@ -22,7 +22,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Nota Dinas</span>
-                        <span class="info-box-number"></span>
+                        <span class="info-box-number"><?= $jmlNotaDinas ?></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -89,12 +89,11 @@
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <!-- BAR CHART -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Grafik Jumlah Surat Masuk dan Keluar per Tahun</h3>
-
+                        <h3 class="box-title">Grafik Jumlah Naskah Dinas per Tahun</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                             </button>
@@ -157,12 +156,12 @@
                                                             case 'delete':
                                                                 echo 'label label-danger';
                                                                 break;
-                                                            case 'cancel':
+                                                            /* case 'cancel':
                                                                 echo 'label label-warning';
                                                                 break;
                                                             case 'over':
                                                                 echo 'label label-info';
-                                                                break;
+                                                                break; */
                                                             default:
                                                                 echo '';
                                                         }

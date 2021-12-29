@@ -82,17 +82,17 @@
         </ul>
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU LAINNYA</li>
-            <li class="<?php if ($this->uri->segment(1) == 'Users') echo 'active'; ?>">
-                <a href="<?= site_url('Users') ?>">
+            <li class="<?php if ($this->uri->segment(1) == 'users') echo 'active'; ?>">
+                <a href="<?= site_url('users') ?>">
                     <i class="fa fa-users"></i> <span>Manajemen User</span>
                 </a>
             </li>
-            <li class="<?php if ($this->uri->segment(1) == 'Log') echo 'active'; ?>">
+            <li class="<?php if ($this->uri->segment(1) == 'log') echo 'active'; ?>">
                 <a href="<?= site_url('log') ?>">
                     <i class="fa fa-history"></i> <span>Rekap Log</span>
                 </a>
             </li>
-            <li class="treeview <?php if ($this->uri->segment(1) == 'LaporanKeluar' or $this->uri->segment(1) == 'LaporanSK' or $this->uri->segment(1) == 'LaporanSPT') echo 'active'; ?>">
+            <li class="treeview <?php if ($this->uri->segment(1) == 'laporankeluar' or $this->uri->segment(1) == 'laporansk' or $this->uri->segment(1) == 'laporanspt') echo 'active'; ?>">
                 <a href="">
                     <i class="fa fa-file-excel-o"></i>
                     <span>Laporan</span>

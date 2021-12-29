@@ -2,6 +2,8 @@
 
 class LaporanKeluar extends CI_Controller {
 
+    private $_cname = 'laporankeluar';
+
     public function __construct() {
         parent::__construct();
         is_logged_in();
@@ -103,8 +105,8 @@ class LaporanKeluar extends CI_Controller {
         $excel = new PHPExcel();
 
         /* settingan awal file excel */
-        $excel->getProperties()->setCreator('BKD Jatim')
-                               ->setLastModifiedBy('BKD Jatim')
+        $excel->getProperties()->setCreator('Bakorwil Pamekasan')
+                               ->setLastModifiedBy('Bakorwil Pamekasan')
                                ->setTitle('Rekap Laporan Surat Keluar')
                                ->setSubject('Laporan')
                                ->setDescription('Rekap Laporan Surat Keluar')
@@ -258,7 +260,7 @@ class LaporanKeluar extends CI_Controller {
     public function reset() {
         $this->session->unset_userdata('tgl_awal');
         $this->session->unset_userdata('tgl_akhir');
-        redirect('LaporanKeluar');
+        redirect($this->_cname);
     }
 
 }

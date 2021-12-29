@@ -23,21 +23,42 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#newUser" title="Tambah User"><i class="fa fa-plus"></i> Tambah</button>
+                <button class="btn btn-success" data-toggle="modal" data-target="#newUser" title="Tambah User"><i class="fa fa-plus"></i> Tambah</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <form method="post" action="<?= site_url('users') ?>" class="form-inline">
-                    <div class="input-group col-md-2">
-                        <input type="text" class="form-control" placeholder="Masukkan keyword.." name="keyword" autocomplete="off" autofocus required>
-                        <span class="input-group-btn">
-                            <input class="btn btn-success" type="submit" name="submit" value="Cari">
-                        </span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel box box-danger">
+                            <div class="box-header">
+                                <button data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" class="btn btn-sm btn-danger pull-right" aria-expanded="true">
+                                    Filter Pencarian
+                                </button>
+                                <a href="<?= site_url('users/reset') ?>" class="btn btn-sm bg-navy pull-right" style="margin-right:5px;">
+                                    Reset Pencarian
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" aria-expanded="true">
+                                <div class="box-body">
+                                    <form method="post" action="<?= site_url('users/search') ?>">
+                                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" name="username" id="username">
+                                        </div>
+                                        <div class=" form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" name="nama" id="nama">
+                                        </div>
+                                        <button type="reset" class="btn btn-default" title="Hapus Pencarian">Clear</button>
+                                        <input type="submit" name="submit" class="btn btn-success" value="Search" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group"><a href="<?= site_url('users/reset') ?>" class="btn btn-danger" title="Reset Pencarian">Reset</a></span>
-                    </div>
-                </form><br />
+                </div>
+                <br />
                 <h5>Result(s) : <?= $total_rows . ' data' ?></h5>
                 <div class="table-responsive">
                     <table id="table1" class="table table-striped">
@@ -78,13 +99,13 @@
                                 <tr>
                                     <td align='center' colspan="12">
                                         <span class="text text-danger">
-                                            <h5>- Data tidak ditemukan -</h5>
+                                            <h5>- tidak ada data -</h5>
                                         </span>
                                     </td>
                                 </tr>
                             <?php }  ?>
                             <?php
-                            foreach ($all_user as $row) : ?>
+                            foreach ($all_users as $row) : ?>
                                 <tr>
                                     <td align='center'><?= ++$start ?></td>
                                     <td align='center'><img src="<?= base_url('assets/images/') . $row->foto ?>" class="zoom avatar"></td>
@@ -155,14 +176,18 @@
 <!-- /.content-wrapper -->
 
 <!-- Modal Tambah User -->
-<div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="newUser" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-olive">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
                 <h4 class="modal-title">Tambah User</h4>
             </div>
             <div class="modal-body">
                 <form method="post" action="<?= site_url('users/add'); ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required>
@@ -178,7 +203,7 @@
                     <div class="form-group">
                         <label>Bidang</label>
                         <select class="form-control" name="bidang" id="bid">
-                            <option value="0" selected>- Pilih Bidang -</option>
+                            <option value="" selected disabled>- Pilih Bidang -</option>
                             <?php foreach ($all_bidang as $row) : ?>
                                 <option value="<?= $row->id ?>"><?= $row->name ?></option>
                             <?php endforeach; ?>
@@ -221,15 +246,19 @@
 </div>
 
 <!-- Modal Edit User -->
-<?php foreach ($all_user as $row) : ?>
-    <div class="modal fade" id="editUser<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<?php foreach ($all_users as $row) : ?>
+    <div class="modal fade" id="editUser<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-olive">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h4 class="modal-title">Edit User</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" action="<?= site_url('users/edit/') . $row->id; ?>" enctype="multipart/form-data">
+                        <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <input type="hidden" name="old_image" value="<?= $row->foto ?>">
                         <div class="form-group">
                             <label for="username">Username</label>
@@ -257,8 +286,8 @@
                                     <?php endforeach;
                                 } elseif ($row->bidang == 0) { ?>
                                     <option value="0">- Pilih Bidang -</option>
-                                <?php } elseif ($row->bidang == 123) { ?>
-                                    <option value="123">BADAN KEPEGAWAIAN DAERAH</option>
+                                <?php } elseif ($row->bidang == 214) { ?>
+                                    <option value="214">BAKORWIL PAMEKASAN</option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -274,11 +303,11 @@
                                             <option value="<?= $sub_bidang->id ?>"><?= $sub_bidang->name ?></option>
                                         <?php } ?>
                                     <?php endforeach;
-                                } elseif ($row->bidang != 0 and $row->bidang != 123 and $row->sub_bidang == 0) { ?>
+                                } elseif ($row->bidang != 0 and $row->bidang != 214 and $row->sub_bidang == 0) { ?>
                                     <option value="0">- Pilih Sub Bidang -</option>
                                 <?php } elseif ($row->bidang == 0 and $row->sub_bidang == 0) { ?>
                                     <option value="0">- Pilih Sub Bidang -</option>
-                                <?php } elseif ($row->bidang == 123 and $row->sub_bidang == 0) { ?>
+                                <?php } elseif ($row->bidang == 214 and $row->sub_bidang == 0) { ?>
                                     <option value="0">- Pilih Sub Bidang -</option>
                                 <?php } ?>
                             </select>
@@ -322,12 +351,15 @@
 
 <!-- Modal Hapus User -->
 <?php
-foreach ($all_user as $row) :
+foreach ($all_users as $row) :
 ?>
-    <div class="modal fade" id="delUser<?= $row->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="delUser<?= $row->id ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                     <h3 class="modal-title"><i class="fa fa-exclamation-circle"></i> Konfirmasi</h3>
                 </div>
                 <div class="modal-body">

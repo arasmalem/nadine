@@ -13,31 +13,22 @@ function is_logged_in() {
 
         /* jika role = admin, block semua menu yang bukan haknya */
         if ($role == 'Admin') {
-            if ($menu != 'home' and $menu != 'suratkeluar'
-                and $menu != 'spacekeluar' and $menu != 'sk'
-                and $menu != 'spt' and $menu != 'spacespt'
-                and $menu != 'laporankeluar' and $menu != 'laporansk' and $menu != 'laporanspt') {
+            if (
+                $menu != 'home' and $menu != 'suratkeluar' and $menu != 'notadinas'
+                and $menu != 'spacekeluar' and $menu != 'sk' and $menu !='spacesk' and $menu != 'spt' and $menu != 'spacespt'
+                and $menu != 'laporankeluar' and $menu != 'laporansk' and $menu != 'laporanspt' and $menu != 'profile'
+            ) {
                 redirect('auth/blocked');
             }
             
         /* jika role = user, block semua menu yang bukan haknya */
         } elseif ($role == 'User') {
-            if ($user['username'] == 'sekretaris' or ($user['bidang'] == 12301 and $user['sub_bidang'] == 0)) { // sekretaris
-                if ($menu != 'home' and $menu != 'Disposisi' and $menu != 'DisposisiUnd' and $menu != 'InboxKabid' and $menu != 'InboxUndKabid') {
-                    redirect('auth/blocked');
-                }
-            } elseif ($user['bidang'] == 123 and $user['sub_bidang'] == 0) { // kepala badan
-                if ($menu != 'Home' and $menu != 'Disposisi' and $menu != 'DisposisiUnd' and $menu != 'InboxKaban' and $menu != 'InboxUndKaban') {
-                    redirect('auth/blocked');
-                }
-            } elseif ($user['bidang'] != 123 and $user['sub_bidang'] == 0) { // kepala bidang
-                if ($menu != 'Home' and $menu != 'inboxkabid' and $menu != 'inboxundkabid') {
-                    redirect('auth/blocked');
-                }
-            } elseif ($user['bidang'] != 0 and $user['sub_bidang'] != 0) { // kepala sub bidang
-                if ($menu != 'Home' and $menu != 'InboxKasubid' and $menu != 'InboxUndKasubid') {
-                    redirect('auth/blocked');
-                }
+            if (
+                $menu != 'home' and $menu != 'suratkeluar' and $menu != 'notadinas'
+                and $menu != 'spacekeluar' and $menu != 'sk' and $menu != 'spacesk' and $menu != 'spt' 
+                and $menu != 'spacespt' and $menu != 'profile'
+            ) {
+                redirect('auth/blocked');
             }
         }
     }

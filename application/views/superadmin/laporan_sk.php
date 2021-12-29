@@ -23,6 +23,7 @@
                         <div class="form-group">
                             <label>Range Tanggal Entry:</label>
                             <form method="post" action="<?= site_url('laporansk/search') ?>" class="form-inline">
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -88,7 +89,7 @@
                                 <tr>
                                     <td align='center' colspan="12">
                                         <span class="text text-danger">
-                                            <h5>- Data tidak ditemukan -</h5>
+                                            <h5>- tidak ada data -</h5>
                                         </span>
                                     </td>
                                 </tr>
@@ -101,9 +102,9 @@
                                     <td align='center'><?= $row->nomor_sk ?></td>
                                     <td align='center'>
                                         <?php
-                                            $tgl = mediumdate_indo($row->tgl_sk);
-                                            echo $tgl;
-                                            ?>
+                                        $tgl = mediumdate_indo($row->tgl_sk);
+                                        echo $tgl;
+                                        ?>
                                     </td>
                                     <td align='center'><?= $row->klasifikasi ?></td>
                                     <td align='center'><?= $row->perihal ?></td>

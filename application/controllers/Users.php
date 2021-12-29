@@ -2,48 +2,32 @@
 
 class Users extends CI_Controller {
 
-    private $_cname = 'Users';
+    private $_cname = 'users';
 
     public function __construct() {
         parent::__construct();
         is_logged_in();
-        //$this->load->model('Users_model');
-        //$this->load->model('Log_model');
     }
 
     public function index() {
-        /* PAGINATION AND SEARCH BOX*/
-
-        /* SEARCH BOX */
-        /* Get keyword from search box */
-        // jika tombol cari ditekan, masukkan keyword ke dalam session untuk digunakan pagination
-        if ($this->input->post('submit')) {
-            $data['keyword'] = $this->input->post('keyword');
-            $this->session->set_userdata('keyword', $data['keyword']);
-        } else {
-            $data['keyword'] = $this->session->userdata('keyword');
-        }
-
         /* PAGINATION */
         // config
-        $total_rows = $this->Users_model->getTotalRows($data['keyword']);
+        $total_rows = $this->Users_model->getTotalRows();
         $config['base_url'] = base_url() . '/Users/index';
         $config['total_rows'] = $total_rows;
-        $config['per_page'] = 7;
-
+        $config['per_page'] = 10;
         // initialize
         $this->pagination->initialize($config);
-
         /* END OF PAGINATION AND SEARCH BOX */
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
-        $all_user = $this->Users_model->getAll($config['per_page'], $this->uri->segment(3), $data['keyword']);
+        $all_users = $this->Users_model->getAll($config['per_page'], $this->uri->segment(3));
         $all_bidang = $this->Users_model->getAllBidang();
         
         $data = [
             'title' => 'Manajemen User',
             'user' => $user,
-            'all_user' => $all_user,
+            'all_users' => $all_users,
             'all_bidang' => $all_bidang,
             'total_rows' => $config['total_rows'],
             'pagination' => $this->pagination->create_links(),
@@ -52,7 +36,54 @@ class Users extends CI_Controller {
         $this->load->view('template/header', $data);
         $this->load->view('template/topbar', $data);
         $this->load->view('template/sidebar_superadmin', $data);
-        $this->load->view('superadmin/users');
+        $this->load->view('superadmin/users', $data);
+        $this->load->view('template/footer');
+        $this->load->view('modal-logout');
+    }
+
+    public function search() {
+        $post = $this->input->post();
+        if ($this->input->post('submit')) {
+            if ($post['username'] == '' and $post['nama'] == '') {
+                redirect($this->_cname);
+            } else {
+                $data = [
+                    'user_name' => $post['username'],
+                    'nama' => $post['nama'],
+                ];
+                $this->session->set_userdata($data);
+            }
+        } else {
+            $data = [
+                'user_name' => $this->session->userdata('user_name'),
+                'nama' => $this->session->userdata('nama'),
+            ];
+        }
+
+        $total_rows = $this->Users_model->getTotalRowsBySearch($data['user_name'], $data['nama']);
+        $config['base_url'] = base_url() . '/users/search';
+        $config['total_rows'] = $total_rows;
+        $config['per_page'] = 10;
+
+        // initialize
+        $this->pagination->initialize($config);
+
+        $user = $this->Users_model->getByUsername($this->session->userdata('username'));
+        $all_users = $this->Users_model->getAll($config['per_page'], $this->uri->segment(3), $data['user_name'], $data['nama']);
+        $data = [
+            'title' => 'Manajemen Users',
+            'user' => $user,
+            'all_users' => $all_users,
+            'pagination' => $this->pagination->create_links(),
+            'start' => $this->uri->segment(3),
+            'total_rows' => $config['total_rows']
+        ];
+
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/topbar', $data);
+        $this->load->view('template/sidebar_superadmin', $data);
+        $this->load->view('superadmin/users', $data);
         $this->load->view('template/footer');
         $this->load->view('modal-logout');
     }
@@ -65,7 +96,7 @@ class Users extends CI_Controller {
     public function getListSubid() {
         $pId = $this->input->post('pId');
         $subid = $this->Users_model->getAllSubBidang($pId);
-        $data = "<option value=''>- Pilih Sub Bidang / Sub Bagian -</option>";
+        $data = "<option value='0'>- Pilih Sub Bidang / Sub Bagian -</option>";
         foreach ($subid as $row) :
             $data .= "<option value='$row->id'>$row->name</option>";
         endforeach;
@@ -190,7 +221,7 @@ class Users extends CI_Controller {
         endif;
 
         // insert into log_activity table
-        activity_log(@$this->uri->segment(1), 'delete', 'menghapus user ' . $user->username);
+        activity_log($this->uri->segment(1), 'delete', 'menghapus user ' . $user->username);
 
         // hapus user berdasar id
         $this->Users_model->delete($id);

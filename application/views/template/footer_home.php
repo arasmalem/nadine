@@ -30,6 +30,26 @@
             labels: ['<?= date('Y') - 4 ?>', '<?= date('Y') - 3 ?>', '<?= date('Y') - 2 ?>', '<?= date('Y') - 1 ?>', '<?= date('Y') ?>'],
             datasets: [
                 {
+                    label: 'Nota Dinas',
+                    fillColor: 'rgba(60,141,188,0.9)',
+                    strokeColor: 'rgba(60,141,188,0.8)',
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: [<?php $thn_min_4 = $this->Home_model->getJmlNotaDinasByThn(date('Y') - 4);
+                            echo $thn_min_4; ?>,
+                        <?php $thn_min_3 = $this->Home_model->getJmlNotaDinasByThn(date('Y') - 3);
+                        echo $thn_min_3; ?>,
+                        <?php $thn_min_2 = $this->Home_model->getJmlNotaDinasByThn(date('Y') - 2);
+                        echo $thn_min_2; ?>,
+                        <?php $thn_min_1 = $this->Home_model->getJmlNotaDinasByThn(date('Y') - 1);
+                        echo $thn_min_1; ?>,
+                        <?php $thn_skrg = $this->Home_model->getJmlNotaDinasByThn(date('Y'));
+                        echo $thn_skrg; ?>
+                    ]
+                },
+                {
                     label: 'Surat Keluar',
                     fillColor: 'rgba(60,141,188,0.9)',
                     strokeColor: 'rgba(60,141,188,0.8)',
@@ -48,7 +68,47 @@
                         <?php $thn_skrg = $this->Home_model->getJmlSuratKeluarByThn(date('Y'));
                         echo $thn_skrg; ?>
                     ]
-                }
+                },
+                {
+                    label: 'SK',
+                    fillColor: 'rgba(255,165,0,0.9)',
+                    strokeColor: 'rgba(255,165,0,0.8)',
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(255,165,0,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(255,165,0,1)',
+                    data: [<?php $thn_min_4 = $this->Home_model->getJmlSkByThn(date('Y') - 4);
+                            echo $thn_min_4; ?>,
+                        <?php $thn_min_3 = $this->Home_model->getJmlSkByThn(date('Y') - 3);
+                        echo $thn_min_3; ?>,
+                        <?php $thn_min_2 = $this->Home_model->getJmlSkByThn(date('Y') - 2);
+                        echo $thn_min_2; ?>,
+                        <?php $thn_min_1 = $this->Home_model->getJmlSkByThn(date('Y') - 1);
+                        echo $thn_min_1; ?>,
+                        <?php $thn_skrg = $this->Home_model->getJmlSkByThn(date('Y'));
+                        echo $thn_skrg; ?>
+                    ]
+                },
+                {
+                    label: 'SPT',
+                    fillColor: 'rgba(217,83,79,0.9)',
+                    strokeColor: 'rgba(217,83,79,0.8)',
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(217,83,79,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(217,83,79,1)',
+                    data: [<?php $thn_min_4 = $this->Home_model->getJmlSptByThn(date('Y') - 4);
+                            echo $thn_min_4; ?>,
+                        <?php $thn_min_3 = $this->Home_model->getJmlSptByThn(date('Y') - 3);
+                        echo $thn_min_3; ?>,
+                        <?php $thn_min_2 = $this->Home_model->getJmlSptByThn(date('Y') - 2);
+                        echo $thn_min_2; ?>,
+                        <?php $thn_min_1 = $this->Home_model->getJmlSptByThn(date('Y') - 1);
+                        echo $thn_min_1; ?>,
+                        <?php $thn_skrg = $this->Home_model->getJmlSptByThn(date('Y'));
+                        echo $thn_skrg; ?>
+                    ]
+                },
             ]
         }
 

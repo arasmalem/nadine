@@ -2,10 +2,20 @@
 
 class Home_model extends CI_Model {
 
+    private $_table = 'nota_dinas';
     private $_table2 = 'surat_keluar';
     private $_table3 = 'surat_spt';
     private $_table4 = 'surat_keputusan';
     private $_table5 = 'user';
+
+    public function getJmlNotaDinas() {
+        return $this->db->count_all_results($this->_table);
+    }
+
+    public function getJmlNotaDinasByThn($thn) {
+        $this->db->where("YEAR(tgl_notdin)", $thn);
+        return $this->db->count_all_results($this->_table);
+    }
 
     public function getJmlSuratKeluar() {
         return $this->db->count_all_results($this->_table2);
@@ -20,7 +30,17 @@ class Home_model extends CI_Model {
         return $this->db->count_all_results($this->_table3);
     }
 
+    public function getJmlSptByThn($thn) {
+        $this->db->where("YEAR(tgl_spt)", $thn);
+        return $this->db->count_all_results($this->_table3);
+    }
+
     public function getJmlSk() {
+        return $this->db->count_all_results($this->_table4);
+    }
+
+    public function getJmlSkByThn($thn) {
+        $this->db->where("YEAR(tgl_sk)", $thn);
         return $this->db->count_all_results($this->_table4);
     }
 

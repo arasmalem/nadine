@@ -2,21 +2,21 @@
 
 class LaporanSPT extends CI_Controller {
 
+    private $_cname = 'laporanspt';
+
     public function __construct() {
         parent::__construct();
         is_logged_in();
         $this->load->model('LaporanSpt_model');
-        //$this->load->model('Users_model');
-        //$this->load->model('Log_model');
     }
 
     public function index() {
         /* PAGINATION */
         // config
         $total_rows = $this->LaporanSpt_model->getTotalRows();
-        $config['base_url'] = base_url() . '/LaporanSpt/index';
+        $config['base_url'] = base_url() . '/laporanspt/index';
         $config['total_rows'] = $total_rows;
-        $config['per_page'] = 7;
+        $config['per_page'] = 10;
 
         // initialize
         $this->pagination->initialize($config);
@@ -65,9 +65,9 @@ class LaporanSPT extends CI_Controller {
         /* PAGINATION */
         // config
         $total_rows = $this->LaporanSpt_model->getTotalRowsBySearch($data['tgl_awal'], $data['tgl_akhir']);
-        $config['base_url'] = base_url() . '/LaporanSPT/search';
+        $config['base_url'] = base_url() . '/laporanspt/search';
         $config['total_rows'] = $total_rows;
-        $config['per_page'] = 7;
+        $config['per_page'] = 10;
 
         // initialize
         $this->pagination->initialize($config);
@@ -105,8 +105,8 @@ class LaporanSPT extends CI_Controller {
         $excel = new PHPExcel();
 
         /* settingan awal file excel */
-        $excel->getProperties()->setCreator('BKD Jatim')
-                               ->setLastModifiedBy('BKD Jatim')
+        $excel->getProperties()->setCreator('Bakorwil Pamekasan')
+                               ->setLastModifiedBy('Bakorwil Pamekasan')
                                ->setTitle('Rekap Laporan SPT')
                                ->setSubject('Laporan')
                                ->setDescription('Rekap Laporan SPT')
@@ -235,7 +235,7 @@ class LaporanSPT extends CI_Controller {
     public function reset() {
         $this->session->unset_userdata('tgl_awal');
         $this->session->unset_userdata('tgl_akhir');
-        redirect('LaporanSPT');
+        redirect($this->_cname);
     }
 
 }

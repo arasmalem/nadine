@@ -10,12 +10,12 @@ class LaporanSk_model extends CI_Model {
             $this->db->from($this->_table);
             $this->db->where("DATE(created_at) >=", $tgl_awal);
             $this->db->where("DATE(created_at) <=", $tgl_akhir);
-            $this->db->order_by('sk_id', 'DESC');
+            $this->db->order_by('id', 'DESC');
             $this->db->limit($limit, $start);
         } else {
             $this->db->select('nomor_agenda, nomor_sk, tgl_sk, perihal, klasifikasi, operator, created_at');
             $this->db->from($this->_table);
-            $this->db->order_by('sk_id', 'DESC');
+            $this->db->order_by('id', 'DESC');
             $this->db->limit($limit, $start);
         }
         return $this->db->get()->result();

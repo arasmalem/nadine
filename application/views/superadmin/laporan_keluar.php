@@ -23,6 +23,7 @@
                         <div class="form-group">
                             <label>Range Tanggal Entry:</label>
                             <form method="post" action="<?= site_url('laporankeluar/search') ?>" class="form-inline">
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -108,9 +109,9 @@
                                     <td align='center'><?= $row->nomor_surat_keluar ?></td>
                                     <td align='center'>
                                         <?php
-                                            $tgl = mediumdate_indo($row->tgl);
-                                            echo $tgl;
-                                            ?>
+                                        $tgl = mediumdate_indo($row->tgl);
+                                        echo $tgl;
+                                        ?>
                                     </td>
                                     <td align="center"><?= $row->sifat ?></td>
                                     <td align='center'><?= $row->klasifikasi ?></td>

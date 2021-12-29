@@ -11,12 +11,14 @@ class Home extends CI_Controller {
     public function index() {
         if ($this->session->userdata('role') == 'Admin') {
             $user = $this->Users_model->getByUsername($this->session->userdata('username'));
+            $jml_notdin = $this->Home_model->getJmlNotaDinas();
             $jml_srt_keluar = $this->Home_model->getJmlSuratKeluar();
             $jml_spt = $this->Home_model->getJmlSpt();
             $jml_sk = $this->Home_model->getJmlSk();
             $data = [
                 'title' => 'Admin Page',
                 'user' => $user,
+                'jmlNotaDinas' => $jml_notdin,
                 'jmlSrtKeluar' => $jml_srt_keluar,
                 'jmlSk' => $jml_sk,
                 'jmlSpt' => $jml_spt,
@@ -30,6 +32,7 @@ class Home extends CI_Controller {
 
         } elseif ($this->session->userdata('role') == 'Super Admin') {
             $user = $this->Users_model->getByUsername($this->session->userdata('username'));
+            $jml_notdin = $this->Home_model->getJmlNotaDinas();
             $jml_srt_keluar = $this->Home_model->getJmlSuratKeluar();
             $jml_spt = $this->Home_model->getJmlSpt();
             $jml_sk = $this->Home_model->getJmlSk();
@@ -39,6 +42,7 @@ class Home extends CI_Controller {
             $data = [
                 'title' => 'Super Admin Page',
                 'user' => $user,
+                'jmlNotaDinas' => $jml_notdin,
                 'jmlSrtKeluar' => $jml_srt_keluar,
                 'jmlSk' => $jml_sk,
                 'jmlSpt' => $jml_spt,
@@ -53,18 +57,6 @@ class Home extends CI_Controller {
             $this->load->view('modal-logout');
 
         } elseif ($this->session->userdata('role') == 'User') {
-            $user = $this->Users_model->getByUsername($this->session->userdata('username'));
-            $data = [
-                'title' => 'User Page',
-                'user' => $user
-            ];
-            $this->load->view('template/header', $data);
-            $this->load->view('template/topbar', $data);
-            $this->load->view('template/sidebar_user', $data);
-            $this->load->view('user/index');
-            $this->load->view('template/footer');
-            $this->load->view('modal-logout');
-        }elseif ($this->session->userdata('role') == 'UserPersonal') {
             $user = $this->Users_model->getByUsername($this->session->userdata('username'));
             $data = [
                 'title' => 'User Page',

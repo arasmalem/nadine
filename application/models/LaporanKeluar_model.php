@@ -9,8 +9,8 @@ class LaporanKeluar_model extends CI_Model {
             $this->db->select('surat_keluar.*, sifat_surat.sifat');
             $this->db->from($this->_table);
             $this->db->join('sifat_surat', 'sifat_surat.id = surat_keluar.sifat_id');
-            $this->db->where("DATE(created_at) >=", $tgl_awal);
-            $this->db->where("DATE(created_at) <=", $tgl_akhir);
+            $this->db->where("DATE(surat_keluar.created_at) >=", $tgl_awal);
+            $this->db->where("DATE(surat_keluar.created_at) <=", $tgl_akhir);
             $this->db->order_by('surat_keluar.id', 'DESC');
             $this->db->limit($limit, $start);
         } else {
@@ -30,7 +30,7 @@ class LaporanKeluar_model extends CI_Model {
             $this->db->join('sifat_surat', 'sifat_surat.id = surat_keluar.sifat_id');
             $this->db->where("DATE(surat_keluar.created_at) >=", $tgl_awal);
             $this->db->where("DATE(surat_keluar.created_at) <=", $tgl_akhir);
-            $this->db->order_by("DATE(created_at)", 'ASC');
+            $this->db->order_by("DATE(surat_keluar.created_at)", 'ASC');
         } else {
             $this->db->select('surat_keluar.*, sifat_surat.sifat');
             $this->db->from($this->_table);
