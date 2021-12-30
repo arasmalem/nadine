@@ -21,6 +21,11 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
             </li>
+            <li class="<?php if ($this->uri->segment(1) == 'notadinas') echo 'active'; ?>">
+                <a href="<?= site_url('notadinas') ?>">
+                    <i class="fa fa-file-archive-o"></i><span>Nota Dinas</span>
+                </a>
+            </li>
             <li class="treeview <?php if ($this->uri->segment(1) == 'suratkeluar' or $this->uri->segment(1) == 'spacekeluar') echo 'active'; ?>">
                 <a href="#">
                     <i class="glyphicon glyphicon-send"></i>
@@ -34,10 +39,18 @@
                     <li><a href="<?= site_url('spacekeluar') ?>"><i class="fa fa-circle-o text-yellow"></i> Space Surat Keluar</a></li>
                 </ul>
             </li>
-            <li class="<?php if ($this->uri->segment(1) == 'sk') echo 'active'; ?>">
-                <a href="<?= site_url('sk') ?>">
-                    <i class="fa fa-file"></i><span>Surat Keputusan</span>
+            <li class="treeview <?php if ($this->uri->segment(1) == 'sk' or $this->uri->segment(1) == 'spacesk') echo 'active'; ?>">
+                <a href="#">
+                    <i class="fa fa-file"></i>
+                    <span>Surat Keputusan</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= site_url('sk') ?>"><i class="fa fa-circle-o text-aqua"></i> Surat Keputusan</a></li>
+                    <li><a href="<?= site_url('spacesk') ?>"><i class="fa fa-circle-o text-yellow"></i> Space SK</a></li>
+                </ul>
             </li>
             <li class="treeview <?php if ($this->uri->segment(1) == 'spt' or $this->uri->segment(1) == 'spacespt') echo 'active'; ?>">
                 <a href="#">
@@ -51,11 +64,6 @@
                     <li><a href="<?= site_url('spt') ?>"><i class="fa fa-circle-o text-aqua"></i> SPT</a></li>
                     <li><a href="<?= site_url('spacespt') ?>"><i class="fa fa-circle-o text-yellow"></i> Space SPT</a></li>
                 </ul>
-            </li>
-            <li class="<?php if ($this->uri->segment(1) == 'notadinas') echo 'active'; ?>">
-                <a href="<?= site_url('notadinas') ?>">
-                    <i class="fa fa-file-archive-o"></i><span>Nota Dinas</span>
-                </a>
             </li>
             <li>
                 <a href="" data-toggle="modal" data-target="#logoutModal">

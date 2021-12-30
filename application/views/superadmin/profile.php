@@ -78,7 +78,7 @@
                 <h4 class="modal-title"><i class="fa fa-user"></i> &nbsp;&nbsp;Edit Profil</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('profile/edit') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= site_url('profile/edit') ?>" enctype="multipart/form-data" class="form">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <input type="hidden" name="old_image" value="<?= $user->foto ?>">
                     <input type="hidden" name="old_password" value="<?= $user->password ?>">
@@ -100,7 +100,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success">Update</button>
+                <button type="submit" class="btn btn-success btn-submit">
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Update</div>
+                    <div class=" submit-text">Update</div>
+                </button>
             </div>
             </form>
         </div>

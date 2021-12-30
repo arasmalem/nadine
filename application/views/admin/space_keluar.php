@@ -137,7 +137,7 @@
                 <h4 class="modal-title">Tambah Space Surat Keluar</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('spacekeluar/add'); ?>">
+                <form method="post" action="<?= site_url('spacekeluar/add'); ?>" class="form">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label>Tgl Surat</label>
@@ -156,7 +156,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="submit" class="btn btn-success btn-submit">
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Simpan</div>
+                    <div class=" submit-text">Simpan</div>
+                </button>
             </div>
             </form>
         </div>
@@ -177,7 +180,7 @@
                     <h4 class="modal-title">Tambah Surat Keluar</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?= site_url('spacekeluar/used/') . $surat_id ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= site_url('spacekeluar/used/') . $surat_id ?>" enctype="multipart/form-data" class="form">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="form-group">
                             <label for="nomor_agenda">Nomor Agenda</label>
@@ -244,7 +247,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="submit" class="btn btn-success btn-submit">
+                        <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Simpan</div>
+                        <div class=" submit-text">Simpan</div>
+                    </button>
                 </div>
                 </form>
             </div>

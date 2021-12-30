@@ -30,7 +30,11 @@
 <!-- Sweetalert -->
 <script src="<?= base_url('assets/AdminLTE/') ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url('assets/flashdata.js') ?>"></script>
-
+<script>
+    function disabled_button(status) {
+        document.getElementsByClassName('save').disabled = status;
+    }
+</script>
 <!-- page script -->
 <script>
     $(function() {
@@ -49,6 +53,12 @@
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
         });
+
+        $('.form').on('submit', function() {
+            $('.btn-submit').attr('disabled', 'true');
+            $('.spinner').show();
+            $('.submit-text').hide();
+        })();
     });
 </script>
 

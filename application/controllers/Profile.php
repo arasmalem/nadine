@@ -1,11 +1,12 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
+    
+    private $_cname = 'profile';
+
     public function __construct() {
         parent::__construct();
         is_logged_in();
-        //$this->load->model('Users_model');
-        //$this->load->model('Log_model');
     }
 
     public function index() {
@@ -78,7 +79,7 @@ class Profile extends CI_Controller {
         ];
         $this->Users_model->editProfile($data, $this->session->userdata('username'));
         $this->session->set_flashdata('success', 'Profil berhasil diubah!');
-        redirect('Profile');
+        redirect($this->_cname);
     }
 
 }

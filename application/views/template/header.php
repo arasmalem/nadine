@@ -46,6 +46,10 @@
       height: 50px;
       border-radius: 50%;
     }
+
+    .spinner {
+      display: none;
+    }
   </style>
   <style>
     .zoom {
