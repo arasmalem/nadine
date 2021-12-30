@@ -25,14 +25,23 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        .spinner {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
             <i class="fa fa-paper-plane"></i> <b>NADINE</b>
-            <p><h2>(Naskah Dinas Elektronik)</h2></p>
-            <p><h4>Bakorwil Pamekasan</h4></p>
+            <p>
+            <h2>(Naskah Dinas Elektronik)</h2>
+            </p>
+            <p>
+            <h4>Bakorwil Pamekasan</h4>
+            </p>
         </div>
         <?php if ($this->session->flashdata('failed')) { ?>
             <div class="alert alert-danger" role="alert">
@@ -53,7 +62,7 @@
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="<?= base_url('auth') ?>" method="post">
+            <form action="<?= base_url('auth') ?>" method="post" class="form">
                 <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" name="username" placeholder="Username" value="<?= set_value('username'); ?>" autocomplete="off" autofocus>
@@ -69,7 +78,10 @@
                     <div class="col-xs-8"></div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-success btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-success btn-block btn-flat btn-submit">
+                            <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Sign In</div>
+                            <div class=" submit-text">Sign In</div>
+                        </button>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -83,6 +95,15 @@
     <script src="<?= base_url('assets/AdminLTE/') ?>bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="<?= base_url('assets/AdminLTE/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $('.form').on('submit', function() {
+                $('.btn-submit').attr('disabled', 'true');
+                $('.spinner').show();
+                $('.submit-text').hide();
+            })();
+        });
+    </script>
 </body>
 
 </html>
