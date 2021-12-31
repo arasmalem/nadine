@@ -73,19 +73,20 @@ class SpaceSk extends CI_Controller {
         $total_rows = $this->SpaceSk_model->getTotalRowsBySearch($data['tgl_sk'], $data['nomor_agenda']);
         $config['base_url'] = base_url() . '/spacesk/search';
         $config['total_rows'] = $total_rows;
-        $config['per_page'] = 1;
-
+        $config['per_page'] = 10;
         // initialize
         $this->pagination->initialize($config);
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
         $spacesk = $this->SpaceSk_model->getAll($config['per_page'], $this->uri->segment(3), $data['tgl_sk'], $data['nomor_agenda']);
         $bidang = $this->SpaceSk_model->getBidang();
+        $klasifikasi = $this->Sk_model->getKlasifikasi();
         $data = [
             'title' => 'Space SK',
             'user' => $user,
             'spacesk' => $spacesk,
             'bidang' => $bidang,
+            'klasifikasi' => $klasifikasi,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),
             'total_rows' => $config['total_rows']

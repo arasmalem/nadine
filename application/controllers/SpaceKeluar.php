@@ -77,17 +77,22 @@ class SpaceKeluar extends CI_Controller {
         $config['base_url'] = base_url() . '/spacekeluar/search';
         $config['total_rows'] = $total_rows;
         $config['per_page'] = 10;
-
         // initialize
         $this->pagination->initialize($config);
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
         $spaceKeluar = $this->SpaceKeluar_model->getAll($config['per_page'], $this->uri->segment(3), $data['tgl'], $data['nomor_agenda']);
+        $klasifikasi = $this->SuratKeluar_model->getKlasifikasi();
+        $sifat = $this->SuratKeluar_model->getSifat();
+        $bidang = $this->SuratKeluar_model->getBidang();
 
         $data = [
             'title' => 'Space Surat Keluar',
             'user' => $user,
             'spaceKeluar' => $spaceKeluar,
+            'sifat' => $sifat,
+            'bidang' => $bidang,
+            'klasifikasi' => $klasifikasi,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),
             'total_rows' => $config['total_rows']

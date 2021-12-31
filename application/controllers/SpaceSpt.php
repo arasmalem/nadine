@@ -79,11 +79,13 @@ class SpaceSpt extends CI_Controller {
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
         $spacespt = $this->SpaceSpt_model->getAll($config['per_page'], $this->uri->segment(3), $data['tgl_spt'], $data['nomor_agenda']);
+        $bidang = $this->Spt_model->getBidang();
 
         $data = [
             'title' => 'Space Surat Perintah Tugas',
             'user' => $user,
             'spacespt' => $spacespt,
+            'bidang' => $bidang,
             'pagination' => $this->pagination->create_links(),
             'start' => $this->uri->segment(3),
             'total_rows' => $config['total_rows']
