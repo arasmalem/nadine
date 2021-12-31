@@ -85,7 +85,7 @@
                 <h4 class="modal-title">Tambah Sifat Surat</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('sifatsurat/add'); ?>">
+                <form method="post" action="<?= site_url('sifatsurat/add'); ?>" class="form">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label for="sifat">Sifat Surat</label>
@@ -94,7 +94,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="submit" class="btn btn-success btn-submit">
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                    <div class=" submit-text">Simpan</div>
+                </button>
             </div>
             </form>
         </div>
@@ -113,7 +116,7 @@
                     <h4 class="modal-title">Edit Sifat Surat</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?= site_url('sifatsurat/edit/') . $row->id; ?>">
+                    <form method="post" action="<?= site_url('sifatsurat/edit/') . $row->id; ?>" class="form">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <div class="form-group">
                             <label for="sifat">Sifat Surat</label>
@@ -122,7 +125,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success btn-submit">
+                        <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                        <div class=" submit-text">Update</div>
+                    </button>
                 </div>
                 </form>
             </div>

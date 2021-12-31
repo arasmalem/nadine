@@ -25,7 +25,8 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-body">
-                        <form method="post" action="<?= site_url('unitkerja/add') ?>">
+                        <form method="post" action="<?= site_url('unitkerja/add') ?>" class="form">
+                            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                             <div class="form-group">
                                 <label for="pid">Id Parent</label>
                                 <!-- <input type="text" class="form-control" id="pid" name="pid"> -->
@@ -46,7 +47,10 @@
                     </div>
                     <div class="modal-footer">
                         <a href="<?= site_url('unitkerja') ?>" class="btn btn-danger">Batal</a>
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success btn-submit">
+                            <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                            <div class=" submit-text">Simpan</div>
+                        </button>
                     </div>
                     </form>
                 </div>

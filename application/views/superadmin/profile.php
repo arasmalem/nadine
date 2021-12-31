@@ -101,7 +101,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-success btn-submit">
-                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Update</div>
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
                     <div class=" submit-text">Update</div>
                 </button>
             </div>

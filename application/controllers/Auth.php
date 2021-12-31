@@ -67,7 +67,7 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('bidang');
         $this->session->unset_userdata('sub_bidang');
         $this->session->unset_userdata('keyword');
-        $this->session->set_flashdata('success', 'Anda telah logout dari aplikasi.');
+        // $this->session->set_flashdata('success', 'Anda telah logout dari aplikasi.');
         redirect('auth');
     }
 

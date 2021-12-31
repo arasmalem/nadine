@@ -80,6 +80,11 @@
                     <li><a href="<?= site_url('laporanspt') ?>"><i class="fa fa-file-text-o"></i> SPT</a></li>
                 </ul>
             </li>
+            <li class="<?php if ($this->uri->segment(1) == 'chat') echo 'active'; ?>">
+                <a href="<?= site_url('chat') ?>">
+                    <i class="fa fa-comments"></i><span>Chat Room</span>
+                </a>
+            </li>
             <li>
                 <a href="" data-toggle="modal" data-target="#logoutModal">
                     <i class="fa fa-power-off"></i> <span>Logout</span>

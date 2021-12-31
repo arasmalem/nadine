@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/') ?>bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/') ?>dist/css/AdminLTE.css">
-
+    <!-- Sweetalert -->
+    <link rel="stylesheet" href="<?= base_url('assets/AdminLTE/') ?>plugins/sweetalert2/sweetalert2.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +36,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <i class="fa fa-paper-plane"></i> <b>NADINE</b>
+            <i class="fa fa-envelope"></i> <b>NADINE</b>
             <p>
             <h2>(Naskah Dinas Elektronik)</h2>
             </p>
@@ -43,20 +44,10 @@
             <h4>Bakorwil Pamekasan</h4>
             </p>
         </div>
-        <?php if ($this->session->flashdata('failed')) { ?>
-            <div class="alert alert-danger" role="alert">
-                <?= $this->session->flashdata('failed') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <?php } elseif ($this->session->flashdata('success')) { ?>
-            <div class="alert alert-success" role="alert">
-                <?= $this->session->flashdata('success') ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+        <?php if ($this->session->flashdata('success')) { ?>
+            <div class="flash-data" data-status="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
+        <?php } elseif ($this->session->flashdata('failed')) { ?>
+            <div class="flash-data" data-status="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
         <?php } ?>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -79,8 +70,8 @@
                     <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-success btn-block btn-flat btn-submit">
-                            <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Sign In</div>
-                            <div class=" submit-text">Sign In</div>
+                            <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                            <div class=" submit-text"><i class="fa fa-sign-in"></i> Sign In</div>
                         </button>
                     </div>
                     <!-- /.col -->
@@ -95,6 +86,9 @@
     <script src="<?= base_url('assets/AdminLTE/') ?>bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="<?= base_url('assets/AdminLTE/') ?>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Sweetalert -->
+    <script src="<?= base_url('assets/AdminLTE/') ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="<?= base_url('assets/flashdata.js') ?>"></script>
     <script>
         $(function() {
             $('.form').on('submit', function() {

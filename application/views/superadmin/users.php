@@ -186,7 +186,7 @@
                 <h4 class="modal-title">Tambah User</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('users/add'); ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= site_url('users/add'); ?>" enctype="multipart/form-data" class="form">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label for="username">Username</label>
@@ -238,7 +238,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="submit" class="btn btn-success btn-submit">
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                    <div class=" submit-text">Simpan</div>
+                </button>
             </div>
             </form>
         </div>
@@ -257,7 +260,7 @@
                     <h4 class="modal-title">Edit User</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<?= site_url('users/edit/') . $row->id; ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?= site_url('users/edit/') . $row->id; ?>" enctype="multipart/form-data" class="form">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                         <input type="hidden" name="old_image" value="<?= $row->foto ?>">
                         <div class="form-group">
@@ -341,7 +344,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success btn-submit">
+                        <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                        <div class=" submit-text">Update</div>
+                    </button>
                 </div>
                 </form>
             </div>

@@ -161,7 +161,7 @@
                 <h4 class="modal-title">Tambah Surat Keputusan</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?= site_url('SK/add'); ?>" enctype="multipart/form-data" class="form">
+                <form method="post" action="<?= site_url('sk/add'); ?>" enctype="multipart/form-data" class="form">
                     <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                     <div class="form-group">
                         <label>Klasifikasi Surat</label>
@@ -204,7 +204,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-success btn-submit">
-                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Simpan</div>
+                    <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
                     <div class=" submit-text">Simpan</div>
                 </button>
             </div>
@@ -286,7 +286,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-success btn-submit">
-                        <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Update</div>
+                        <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
                         <div class=" submit-text">Update</div>
                     </button>
                 </div>

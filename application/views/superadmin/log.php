@@ -23,6 +23,7 @@
                         <div class="form-group">
                             <label>Range Tanggal:</label>
                             <form method="post" action="<?= site_url('Log/search') ?>" class="form-inline">
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="input-group">
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
@@ -99,7 +100,7 @@
                                     <td align='center'><?= $row->tipe ?></td>
                                     <td><?= $row->aktivitas ?></td>
                                     <td align='center'><?php $tgl = mediumdate_indo($row->created_at);
-                                                            echo $tgl; ?></td>
+                                                        echo $tgl; ?></td>
                                     <td align='center'><?= $row->created_time ?></td>
                                 </tr>
                             <?php

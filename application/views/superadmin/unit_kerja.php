@@ -9,12 +9,6 @@
             <li><a href="<?= site_url('home') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Unit Kerja</li>
         </ol>
-        <!-- Flashdata -->
-        <?php if ($this->session->flashdata('success')) { ?>
-            <div class="flash-data" data-status="success" data-flashdata="<?= $this->session->flashdata('success') ?>"></div>
-        <?php } elseif ($this->session->flashdata('failed')) { ?>
-            <div class="flash-data" data-status="failed" data-flashdata="<?= $this->session->flashdata('failed') ?>"></div>
-        <?php } ?>
     </section>
 
     <!-- Main content -->

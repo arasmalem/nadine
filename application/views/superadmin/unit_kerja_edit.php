@@ -26,7 +26,8 @@
                 <div class="box">
                     <div class="box-body">
                         <?php foreach ($unit as $row) : ?>
-                            <form method="post" action="<?= site_url('unitkerja/edit/') . $row->id ?>">
+                            <form method="post" action="<?= site_url('unitkerja/edit/') . $row->id ?>" class="form">
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                                 <div class="form-group">
                                     <label for="pid">Id Parent</label>
                                     <input type="text" class="form-control" id="pid" name="pid" value="<?= $row->pId ?>" readonly>
@@ -42,7 +43,10 @@
                     </div>
                     <div class="modal-footer">
                         <a href="<?= site_url('unitkerja/delete/') . $row->id ?>" class="btn btn-danger">Hapus</a>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success btn-submit">
+                            <div class="spinner"><i class="fa fa-refresh fa-spin"></i> Loading..</div>
+                            <div class=" submit-text">Update</div>
+                        </button>
                     </div>
                     </form>
                 <?php endforeach; ?>
