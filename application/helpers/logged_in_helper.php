@@ -17,6 +17,7 @@ function is_logged_in() {
                 $menu != 'home' and $menu != 'suratkeluar' and $menu != 'notadinas'
                 and $menu != 'spacekeluar' and $menu != 'sk' and $menu !='spacesk' and $menu != 'spt' and $menu != 'spacespt'
                 and $menu != 'laporankeluar' and $menu != 'laporansk' and $menu != 'laporanspt' and $menu != 'profile'
+                and $menu != 'chat'
             ) {
                 redirect('auth/blocked');
             }
@@ -26,7 +27,7 @@ function is_logged_in() {
             if (
                 $menu != 'home' and $menu != 'suratkeluar' and $menu != 'notadinas'
                 and $menu != 'spacekeluar' and $menu != 'sk' and $menu != 'spacesk' and $menu != 'spt' 
-                and $menu != 'spacespt' and $menu != 'profile'
+                and $menu != 'spacespt' and $menu != 'profile' and $menu != 'chat'
             ) {
                 redirect('auth/blocked');
             }

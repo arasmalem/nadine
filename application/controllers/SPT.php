@@ -17,10 +17,8 @@ class SPT extends CI_Controller {
         $config['base_url'] = base_url() . '/spt/index';
         $config['total_rows'] = $total_rows;
         $config['per_page'] = 10;
-
         // initialize
         $this->pagination->initialize($config);
-
         /* END OF PAGINATION */
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));

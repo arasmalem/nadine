@@ -22,7 +22,7 @@ class NotaDinas extends CI_Controller {
         /* END OF PAGINATION */
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
-        $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3));
+        $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3), null, null, null, $user->username, $user->sub_bidang);
         $klasifikasi = $this->NotaDinas_model->getKlasifikasi();
         $sifat = $this->NotaDinas_model->getSifat();
         $sub_bidang = $this->NotaDinas_model->getSubBidang();
@@ -83,7 +83,7 @@ class NotaDinas extends CI_Controller {
         $this->pagination->initialize($config);
 
         $user = $this->Users_model->getByUsername($this->session->userdata('username'));
-        $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3), $data['nomor_notdin'], $data['perihal'], $data['tgl_notdin']);
+        $nota_dinas = $this->NotaDinas_model->getAll($config['per_page'], $this->uri->segment(3), $data['nomor_notdin'], $data['perihal'], $data['tgl_notdin'], $user->username, $user->sub_bidang);
         $klasifikasi = $this->NotaDinas_model->getKlasifikasi();
         $sifat = $this->NotaDinas_model->getSifat();
         $sub_bidang = $this->NotaDinas_model->getSubBidang();
@@ -136,6 +136,7 @@ class NotaDinas extends CI_Controller {
             'sifat_id' => $post['sifat'],
             'perihal' => htmlspecialchars($post['perihal'], true),
             'klasifikasi' => $post['klasifikasi'],
+            'sub_bidang' => $this->session->userdata('sub_bidang'),
             'file_surat' => $this->_uploadFile(),
             'operator' => $this->session->userdata('username'),
             'created_at' => date('Y-m-d H:i:s'),

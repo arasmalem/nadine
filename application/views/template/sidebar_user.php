@@ -65,6 +65,11 @@
                     <li><a href="<?= site_url('spacespt') ?>"><i class="fa fa-circle-o text-yellow"></i> Space SPT</a></li>
                 </ul>
             </li>
+            <li class="<?php if ($this->uri->segment(1) == 'chat') echo 'active'; ?>">
+                <a href="<?= site_url('chat') ?>">
+                    <i class="fa fa-comments"></i><span>Chat</span>
+                </a>
+            </li>
             <li>
                 <a href="" data-toggle="modal" data-target="#logoutModal">
                     <i class="fa fa-power-off"></i> <span>Logout</span>

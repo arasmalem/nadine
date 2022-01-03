@@ -30,11 +30,8 @@
 <!-- Sweetalert -->
 <script src="<?= base_url('assets/AdminLTE/') ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url('assets/flashdata.js') ?>"></script>
-<script>
-    function disabled_button(status) {
-        document.getElementsByClassName('save').disabled = status;
-    }
-</script>
+<!-- Chat -->
+<script src="<?= base_url('assets/chat.js') ?>"></script>
 <!-- page script -->
 <script>
     $(function() {

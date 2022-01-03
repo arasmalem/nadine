@@ -111,38 +111,37 @@
                                         </span></td>
                                 </tr>
                                 <?php } else {
-                                foreach ($nota_dinas as $row) :
-                                    $tgl = mediumdate_indo($row->tgl_notdin);
-                                ?>
-                                    <tr>
-                                        <td align='center'><?= ++$start ?></td>
-                                        <?php if ($row->file_surat == '' or $row->file_surat == NULL) { ?>
-                                            <td></td>
-                                        <?php
-                                        } else {
+                                        foreach ($nota_dinas as $row) :
+                                            $tgl = mediumdate_indo($row->tgl_notdin);
                                         ?>
-                                            <td>
-                                                <a href="<?= base_url('files_nota_dinas/') . $row->file_surat ?>" target="_blank">
-                                                    <center><img src="<?= site_url('assets/') ?>images/pdf.png" width='15' height='15'></center>
-                                                </a>
-                                            </td>
-                                        <?php } ?>
-                                        <td><?= $row->tujuan ?></td>
-                                        <td align='center'><?= $row->nomor_agenda ?></td>
-                                        <td><?= $row->nomor_notdin ?></td>
-                                        <td align='center'><?= $tgl ?></td>
-                                        <td align='center'><?= $row->sifat ?></td>
-                                        <td><?= $row->perihal ?></td>
-                                        <td align='center'>
-                                            <a href="" class="text text-primary fa fa-edit" data-toggle="modal" data-target="#editNotaDinas<?= $row->id ?>" title="Edit"></a>&nbsp;
-                                            <a href="" class="text text-danger fa fa-trash" data-toggle="modal" data-target="#delNotaDinas<?= $row->id; ?>" title="Delete"></a>&nbsp;
-                                            <a href="" class="text text-success fa fa-search" data-toggle="modal" data-target="#detailNotaDinas<?= $row->id; ?>" title="Detail"></a>
-                                        </td>
-                                    </tr>
-                            <?php
-                                endforeach;
-                            }
-                            ?>
+                                            <tr>
+                                                <td align='center'><?= ++$start ?></td>
+                                                <?php if ($row->file_surat == '' or $row->file_surat == NULL) { ?>
+                                                    <td></td>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <td>
+                                                        <a href="<?= base_url('files_nota_dinas/') . $row->file_surat ?>" target="_blank">
+                                                            <center><img src="<?= site_url('assets/') ?>images/pdf.png" width='15' height='15'></center>
+                                                        </a>
+                                                    </td>
+                                                <?php } ?>
+                                                <td><?= $row->tujuan ?></td>
+                                                <td align='center'><?= $row->nomor_agenda ?></td>
+                                                <td><?= $row->nomor_notdin ?></td>
+                                                <td align='center'><?= $tgl ?></td>
+                                                <td align='center'><?= $row->sifat ?></td>
+                                                <td><?= $row->perihal ?></td>
+                                                <td align='center'>
+                                                    <a href="" class="text text-primary fa fa-edit" data-toggle="modal" data-target="#editNotaDinas<?= $row->id ?>" title="Edit"></a>&nbsp;
+                                                    <a href="" class="text text-danger fa fa-trash" data-toggle="modal" data-target="#delNotaDinas<?= $row->id; ?>" title="Delete"></a>&nbsp;
+                                                    <a href="" class="text text-success fa fa-search" data-toggle="modal" data-target="#detailNotaDinas<?= $row->id; ?>" title="Detail"></a>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        endforeach;
+                                    } ?>
                         </tbody>
                     </table>
                 </div>
